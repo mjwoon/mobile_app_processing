@@ -1,15 +1,10 @@
 
-import controlP5.*;
-
-ControlP5 cp5;
 
 ArrayList<Widget> widgets = new ArrayList<Widget>();
 
 int scrollY = 0; // 스크롤을 위한 변수
 boolean isDragging = false; // 드래그 중인지 여부 확인
 float pos, npos;  // pos는 부드러운 스크롤을 위한 위치, npos는 목표 스크롤 위치
-
-PImage ArrowImage; // 화살표 이미지
 
 
 GamjaWidget gamjaWidget;
@@ -19,29 +14,20 @@ BatteryWidget batteryWidget;
 
 
 void setup() {
-    size(412, 1415);
+    size(436, 888);
     background(255);
 
-    ArrowImage = loadImage("Arrow.png");
 
-    cp5 = new ControlP5(this);  // ControlP5 초기화
-
-    gamjaWidget = new GamjaWidget(26, 822 + scrollY, 368, 224, color(200, 200, 255));
-    musicWidget = new MusicWidget(214,1064 + scrollY, 176, 104, color(220,220,220));
-    bookWidget = new BookWidget(26, 16 + scrollY, 380, 224, color(255,220,220));
-    batteryWidget = new BatteryWidget(22, 281 + scrollY, 368,90, color(255));
+    gamjaWidget = new GamjaWidget(22, 822 + scrollY, 368, 224, 20,color(200, 200, 255));
+    musicWidget = new MusicWidget(214,1064 + scrollY, 176, 104, 20,color(220,220,220));
+    bookWidget = new BookWidget(26, 16 + scrollY, 380, 224, 20,color(255,220,220));
+    batteryWidget = new BatteryWidget(22, 281 + scrollY, 368,90, 20,color(255));
 
     widgets.add(gamjaWidget);
     widgets.add(musicWidget);
     widgets.add(bookWidget);
     widgets.add(batteryWidget);
 
-    cp5.addButton("ArrowBtn")
-     .setPosition(376,934 + scrollY)
-     .setImage(ArrowImage)
-     .setSize(7,12)
-     .setId(1)
-     .updateSize();
 }
 
 void draw(){
@@ -58,8 +44,6 @@ void draw(){
         widget.display();
     }
     popMatrix();
-
-    cp5.draw();
 
 }
 
