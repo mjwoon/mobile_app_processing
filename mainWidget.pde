@@ -14,7 +14,7 @@ PImage ArrowImage; // 화살표 이미지
 
 GamjaWidget gamjaWidget;
 MusicWidget musicWidget;
-BookWidget bookWidget;
+BookWidget bookWidget; 
 BatteryWidget batteryWidget;
 
 

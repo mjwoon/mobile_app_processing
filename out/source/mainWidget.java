@@ -29,14 +29,15 @@ ArrayList<Widget> widgets = new ArrayList<Widget>();
 int scrollY = 0; // 스크롤을 위한 변수
 boolean isDragging = false; // 드래그 중인지 여부 확인
 float pos, npos;  // pos는 부드러운 스크롤을 위한 위치, npos는 목표 스크롤 위치
-PImage ArrowImage;
+
+PImage ArrowImage; // 화살표 이미지
+
+
 GamjaWidget gamjaWidget;
 MusicWidget musicWidget;
 BookWidget bookWidget;
 BatteryWidget batteryWidget;
 
-
-int currentScreen = 0; // 현재 화면을 나타내는 변수 (0: 기본 화면, 1: '넌 머지 않아 예쁜 꽃이 될테니까' 화면)
 
 public void setup() {
     /* size commented out by preprocessor */;
@@ -50,6 +51,7 @@ public void setup() {
     musicWidget = new MusicWidget(214,1064 + scrollY, 176, 104, color(220,220,220));
     bookWidget = new BookWidget(26, 16 + scrollY, 380, 224, color(255,220,220));
     batteryWidget = new BatteryWidget(22, 281 + scrollY, 368,90, color(255));
+
     widgets.add(gamjaWidget);
     widgets.add(musicWidget);
     widgets.add(bookWidget);
