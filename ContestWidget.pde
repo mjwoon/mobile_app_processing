@@ -38,6 +38,7 @@ class ContestWidget extends Widget{
 
         textSize(32);
         fill(255);
+
         if (currentIndex == 0) {
             text(contestTitle[currentIndex], x + 47, y + 40);  // 0번 인덱스일 때
         } else if (currentIndex == 1) {
@@ -66,6 +67,7 @@ class ContestWidget extends Widget{
             rect(215,558,173,258,20);
 
             image(plusImage, x + 45, y + 90, 82, 82);
+            image(leftArrow, x + 10, y + 130, 10, 15);
 
             fill(255);
             textSize(18);
@@ -86,6 +88,7 @@ class ContestWidget extends Widget{
     void beforeScreen(){
         if (currentIndex > 0) {
             currentIndex -= 1;  // 이전 공모전으로
+            plusIndex = 0;
         }
     }
 
