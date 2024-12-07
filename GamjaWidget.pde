@@ -12,9 +12,28 @@ class GamjaWidget extends Widget{
     super(x, y, width, height, radius, bgColor);
 
     gamjaImage = loadImage("GeGam.png");
-    arrawImage = loadImage("Arrow.png");
+    arrawImage = loadImage("rightArrow.png");
     gamjaImage2 = loadImage("GeGamMent.png");
   }
+
+  @Override
+  void display() {
+    fill(249, 242, 232);  // GamjaWidget만의 고유한 색상
+    // rect(x, y, width, height, radius);
+
+    image(gamjaImage, x, y,width,height);
+    image(arrawImage,x+340, y+100, 22,22);
+
+    if (screenChanged) {
+        // 다른 화면을 보여주는 코드 추가
+        // 예: 새 화면을 그리거나 화면을 전환하는 로직
+      fill(249, 242, 232); 
+      rect(x, y, width, height, radius);
+      
+      image(gamjaImage2,x,y);
+    // 예시로 "Next Screen" 표시
+      }
+    }
 
   // Arrow 이미지 클릭 여부 확인
   boolean isArrowClicked(float mouseX, float mouseY, float scrollY) {
@@ -39,23 +58,6 @@ class GamjaWidget extends Widget{
     screenChanged = true;  // 화면을 변경했음을 표시
   }
 
-  @Override
-  void display() {
-    fill(255, 204, 0);  // GamjaWidget만의 고유한 색상
-    // rect(x, y, width, height, radius);
 
-    image(gamjaImage, x, y,width,height);
-    image(arrawImage,x+350, y+100, 22,22);
-
-    if (screenChanged) {
-        // 다른 화면을 보여주는 코드 추가
-        // 예: 새 화면을 그리거나 화면을 전환하는 로직
-      fill(255,255,255);
-      rect(x, y, width, height, radius);
-      
-      image(gamjaImage2,x,y);
-    // 예시로 "Next Screen" 표시
-      }
-    }
 }
 

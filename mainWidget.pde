@@ -9,25 +9,26 @@ GamjaWidget gamjaWidget;
 MusicWidget musicWidget;
 BookWidget bookWidget; 
 BatteryWidget batteryWidget;
-
+ContestWidget contestWidget;
 
 void setup() {
-  size(436, 700);
+  size(436, 888);
   background(255);
 
   gamjaWidget = new GamjaWidget(22, 822 + scrollY, 368, 224, 20,color(200, 200, 255));
   musicWidget = new MusicWidget(214,1064 + scrollY, 176, 104, 20,color(220,220,220));
   bookWidget = new BookWidget(26, 16 + scrollY, 380, 224, 20,color(255,220,220));
   batteryWidget = new BatteryWidget(22, 281 + scrollY, 368,90, 20,color(255));
-
+  contestWidget = new ContestWidget(215,558,173,258,20,color(104,104,104));
   widgets.add(gamjaWidget);
   widgets.add(musicWidget);
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
+  widgets.add(contestWidget);
 }
 
 void draw(){
-    background(255);
+    background(249,242,232);
 
     pushMatrix();
     translate(0, int(pos));
@@ -49,6 +50,15 @@ void mousePressed() {
       if (gamjaWidget.isArrowClicked(mouseX, mouseY,scrollY)) {
         println("다음 화면 전환");
         gamjaWidget.nextScreen();  // 클릭 시 화면 전환
+      }
+    } else if (widget instanceof ContestWidget){
+      ContestWidget contestWidget = (ContestWidget) widget;
+      if (contestWidget.isRightArrowClicked(mouseX,mouseY,scrollY)){
+        println("다음 공모전");
+        contestWidget.nextScreen();
+      } else if(contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)){
+        print("이전 공모전");
+        contestWidget.beforeScreen();
       }
     }
   }
