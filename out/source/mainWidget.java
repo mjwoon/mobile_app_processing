@@ -110,7 +110,7 @@ public void mousePressed() {
       } else if (contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)) {
         print("이전 공모전");
         contestWidget.beforeScreen();
-      } else if (contestWidget.isPluseClicked(mouseX,mouseY,scrollY) && 
+      } else if (contestWidget.isPlusClicked(mouseX,mouseY,scrollY) && 
       contestWidget.plusIndex == 1){
         println("공모전 사이트로 이동");
         contestWidget.moveLink();
@@ -377,9 +377,9 @@ class ContestWidget extends Widget{
         return false;
     }
 
-    public boolean isPluseClicked(float mouseX,float mouseY, float scrollY){
+    public boolean isPlusClicked(float mouseX,float mouseY, float scrollY){
         float plusX = x + 45;
-        float plusY = y + 90;
+        float plusY = y + 90 + scrollY;
         float plusWidth = 82;
         float plusHeigh = 82;
 

@@ -91,7 +91,7 @@ void mousePressed() {
       } else if (contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)) {
         print("이전 공모전");
         contestWidget.beforeScreen();
-      } else if (contestWidget.isPluseClicked(mouseX,mouseY,scrollY) && 
+      } else if (contestWidget.isPlusClicked(mouseX,mouseY,scrollY) && 
       contestWidget.plusIndex == 1){
         println("공모전 사이트로 이동");
         contestWidget.moveLink();
