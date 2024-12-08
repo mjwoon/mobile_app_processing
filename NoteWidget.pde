@@ -1,7 +1,7 @@
 class NoteWidget extends Widget {
   PImage noteImage; 
-  NoteWidget(float x, float y, float width, float height, color bgColor) {
-    super(x, y, width, height, bgColor);
+  NoteWidget(float x, float y, float width, float height, float radius, color bgColor) {
+    super(x, y, width, height, radius, bgColor);
 
     noteImage = loadImage("note.png");
   }
