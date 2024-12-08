@@ -6,7 +6,7 @@ class MusicWidget extends Widget{
   PImage MusicImage; // 노래 이미지를 저장할 변수
 
   MusicWidget(float x, float y, float width, float height, float radius,color bgColor) {
-    super(x, y, width, height, radius,bgColor);
+    super(x, y, width, height, radius, bgColor);
     MusicImage = loadImage("widget_music.png");
   }
   

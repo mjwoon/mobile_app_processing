@@ -23,46 +23,68 @@ ArrayList<Widget> widgets = new ArrayList<Widget>();
 int scrollY = 0; // 스크롤을 위한 변수
 // boolean isDragging = false; // 드래그 중인지 여부 확인
 float pos, npos;  // pos는 부드러운 스크롤을 위한 위치, npos는 목표 스크롤 위치
+PImage statusImage;
 
 GamjaWidget gamjaWidget;
 MusicWidget musicWidget;
 BookWidget bookWidget; 
 BatteryWidget batteryWidget;
 ContestWidget contestWidget;
+WeatherWidget weatherWidget;
+NoteWidget noteWidget;
+StatusWidget statusWidget;
+AssistWidget assistWidget;
+
 
 public void setup() {
   /* size commented out by preprocessor */;
   background(255);
-
-  gamjaWidget = new GamjaWidget(22, 822 + scrollY, 368, 224, 20,color(200, 200, 255));
-  musicWidget = new MusicWidget(214,1064 + scrollY, 176, 104, 20,color(220,220,220));
-  bookWidget = new BookWidget(26, 16 + scrollY, 380, 224, 20,color(255,220,220));
-  batteryWidget = new BatteryWidget(22, 281 + scrollY, 368,90, 20,color(255));
-  contestWidget = new ContestWidget(215,558,173,258,20,color(104,104,104));
-  widgets.add(gamjaWidget);
-  widgets.add(musicWidget);
+  
+  statusWidget = new StatusWidget(22, 0, 372, 44, 20, color(255, 255, 255));
+  bookWidget = new BookWidget(16, 40 + scrollY, 385, 227, 0, color(255,220,220)); 
+  batteryWidget = new BatteryWidget(22, 286 + scrollY, 368, 90, 20, color(255));
+  weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 20, color(200, 200, 255));
+  contestWidget = new ContestWidget(215, 558, 173, 258, 20, color(104,104,104));
+  gamjaWidget = new GamjaWidget(22, 838+ scrollY, 368, 224, 20, color(200, 200, 255));
+  musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
+  noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
+  assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(0xFFFFFFFF));
+  
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
+  widgets.add(weatherWidget);
   widgets.add(contestWidget);
+  widgets.add(gamjaWidget);
+  widgets.add(musicWidget);
+  widgets.add(noteWidget); 
+  widgets.add(assistWidget);
 }
 
-public void draw(){
-    background(249,242,232);
-
-    pushMatrix();
-    translate(0, PApplet.parseInt(pos));
-
-    // 각 위젯의 display() 호출
-    for (Widget widget : widgets) {
-        widget.display();
-    }
-    popMatrix();
+public void draw() {
+  background(249,242,232);
+  pushMatrix();
+  translate(0, PApplet.parseInt(pos));
+  
+  drawScrollableContent();
+  popMatrix();
+  drawStatusBar();
 }
 
+// 상태바를 고정 그리기
+public void drawStatusBar() {
+  statusWidget.display();
+}
+
+// 스크롤 가능한 내용 그리기
+public void drawScrollableContent() {
+  // 각 위젯의 display() 호출
+  for (Widget widget : widgets) {
+    widget.display();
+  }
+}
 
 // 마우스 클릭 
 public void mousePressed() {
-
   for (Widget widget : widgets) {
     if (widget instanceof GamjaWidget) {
       GamjaWidget gamjaWidget = (GamjaWidget) widget;
@@ -70,42 +92,57 @@ public void mousePressed() {
         println("다음 화면 전환");
         gamjaWidget.nextScreen();  // 클릭 시 화면 전환
       }
-    } else if (widget instanceof ContestWidget){
+    } else if (widget instanceof ContestWidget) {
       ContestWidget contestWidget = (ContestWidget) widget;
-      if (contestWidget.isRightArrowClicked(mouseX,mouseY,scrollY)){
+      if (contestWidget.isRightArrowClicked(mouseX,mouseY,scrollY)) {
         println("다음 공모전");
         contestWidget.nextScreen();
-      } else if(contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)){
+      } else if (contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)) {
         print("이전 공모전");
         contestWidget.beforeScreen();
       }
     }
-  }
-
+  } 
 }
 
-// 휠 스크롤 이벤트 처리
+// 휠스크롤 이벤트 처리
 public void mouseWheel(MouseEvent event) {
   println("마우스 휠");
   // 휠의 스크롤 방향에 따라 npos 값을 변경
   float e = event.getCount();
   npos -= e * 20;  // 20은 스크롤 속도 (조정 가능)
-
+  
   // 스크롤 제한: 화면을 넘어가지 않도록
-  npos = constrain(npos, -1415, 0);  // 최대 스크롤 위치 -1415로 설정 (예시)
+  npos = constrain(npos, -548, 0);  
   
   // 부드러운 스크롤 효과를 위한 보간 처리
   pos += (npos - pos) * 0.1f;
-
+  
   scrollY = PApplet.parseInt(pos);
-
+  
   println("scrollY 업데이트 : " + scrollY);
-}
+  }
+class AssistWidget extends Widget{
+  int selectedIndex = -1; // 선택된 옵션의 인덱스 (-1은 선택 없음)
+
+  AssistWidget(float x, float y, float width, float height, float radius, int bgColor) {
+    super(x, y, width, height, radius, bgColor);
+    
+  }
+  
+
+  @Override public 
+  void display() {
+    fill(0xFFFFFFFF);  // GamjaWidget만의 고유한 색상
+    rect(x, y, width, height,radius);
+
+  }  
+} 
 class BatteryWidget extends Widget{
     PImage batteryImage; // 감자 이미지를 저장할 변수
 
     BatteryWidget(float x, float y, float width, float height,float radius, int bgColor) {
-        super(x, y, width, height,radius, bgColor);
+        super(x, y, width, height, radius, bgColor);
 
         batteryImage = loadImage("battery.png");
 
@@ -114,8 +151,8 @@ class BatteryWidget extends Widget{
 
     @Override public 
     void display() {
-        fill(255, 204, 0);  // GamjaWidget만의 고유한 색상
-        rect(x, y, width, height,radius);
+        fill(249,242,232);  // GamjaWidget만의 고유한 색상
+        rect(x, y, width, height, radius);
 
         image(batteryImage, x, y, width, height);
 
@@ -125,7 +162,7 @@ class BookWidget extends Widget{
     PImage bookImage; // 감자 이미지를 저장할 변수
 
     BookWidget(float x, float y, float width, float height, float radius,int bgColor) {
-        super(x, y, width, height,radius, bgColor);
+        super(x, y, width, height, radius, bgColor);
 
         bookImage = loadImage("book.png");
 
@@ -134,7 +171,7 @@ class BookWidget extends Widget{
 
     @Override public 
     void display() {
-        fill(255, 204, 0);  // GamjaWidget만의 고유한 색상
+        fill(249,242,232);  // GamjaWidget만의 고유한 색상
         rect(x, y, width, height,radius);
 
         image(bookImage, x, y, width, height);
@@ -334,7 +371,7 @@ class MusicWidget extends Widget{
   PImage MusicImage; // 노래 이미지를 저장할 변수
 
   MusicWidget(float x, float y, float width, float height, float radius,int bgColor) {
-    super(x, y, width, height, radius,bgColor);
+    super(x, y, width, height, radius, bgColor);
     MusicImage = loadImage("widget_music.png");
   }
   
@@ -350,6 +387,58 @@ class MusicWidget extends Widget{
 
   
 }
+class NoteWidget extends Widget {
+  PImage noteImage; 
+  NoteWidget(float x, float y, float width, float height, float radius, int bgColor) {
+    super(x, y, width, height, radius, bgColor);
+
+    noteImage = loadImage("note.png");
+  }
+
+  @Override public 
+  void display() {
+    fill(0xFFFFFFFF);  
+    rect(x, y, width, height);
+    noStroke(); 
+    image(noteImage, x, y, width, height);
+  }
+}
+class StatusWidget extends Widget {
+  PImage statusImage; 
+  
+  StatusWidget(float x, float y, float width, float height, float radius, int bgColor) {
+    super(x, y, width, height, radius, bgColor);
+    
+    statusImage = loadImage("statusbar.png");
+  }
+  
+  @Override public 
+  void display() {
+    fill(249,242,232);
+    rect(x, y, width, height);
+    noStroke();
+    image(statusImage, x, y, width, height);
+  }
+  
+}
+class WeatherWidget extends Widget {
+  PImage weatherImage; // 감자 이미지를 저장할 변수
+
+  WeatherWidget(float x, float y, float width, float height, float radius, int bgColor) {
+    super(x, y, width, height, radius, bgColor);
+
+    weatherImage = loadImage("weather.png");
+  }
+
+   @Override public 
+  void display() {
+    fill(249,242,232);  // GamjaWidget만의 고유한 색상
+    rect(x, y, width, height);
+    noStroke(); 
+    image(weatherImage, x, y, width, height);
+    
+  }
+} 
 class Widget {
   float x, y, width, height,radius;
   int bgColor;
@@ -373,7 +462,7 @@ class Widget {
 }
 
 
-  public void settings() { size(436, 888); }
+  public void settings() { size(412, 888); }
 
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "mainWidget" };
