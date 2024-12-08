@@ -34,6 +34,7 @@ WeatherWidget weatherWidget;
 NoteWidget noteWidget;
 StatusWidget statusWidget;
 AssistWidget assistWidget;
+CalenderWidget calenderWidget;
 
 
 public void setup() {
@@ -49,7 +50,8 @@ public void setup() {
   musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(0xFFFFFFFF));
-  
+  calenderWidget = new CalenderWidget(22, 548, 190, 296, 20, color(104,104,104));
+
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
   widgets.add(weatherWidget);
@@ -58,6 +60,7 @@ public void setup() {
   widgets.add(musicWidget);
   widgets.add(noteWidget); 
   widgets.add(assistWidget);
+  widgets.add(calenderWidget);
 }
 
 public void draw() {
@@ -85,12 +88,13 @@ public void drawScrollableContent() {
 
 // 마우스 클릭 
 public void mousePressed() {
+
   for (Widget widget : widgets) {
     if (widget instanceof GamjaWidget) {
       GamjaWidget gamjaWidget = (GamjaWidget) widget;
       if (gamjaWidget.isArrowClicked(mouseX, mouseY,scrollY)) {
         println("다음 화면 전환");
-        gamjaWidget.nextScreen();  // 클릭 시 화면 전환
+        gamjaWidget.nextScreen();
       }
     } else if (widget instanceof ContestWidget) {
       ContestWidget contestWidget = (ContestWidget) widget;
@@ -104,16 +108,21 @@ public void mousePressed() {
       contestWidget.plusIndex == 1){
         contestWidget.moveLink();
       }
+    } else if (widget instanceof CalenderWidget){
+      CalenderWidget calenderWidget = (CalenderWidget) widget;
+      if(calenderWidget.isPluseClicked(mouseX, mouseY, scrollY)){
+        println("구글 캘린더로 이동");
+        calenderWidget.moveLink();
+      }
     }
   } 
+
 }
 
-// 휠스크롤 이벤트 처리
 public void mouseWheel(MouseEvent event) {
-  println("마우스 휠");
-  // 휠의 스크롤 방향에 따라 npos 값을 변경
+
   float e = event.getCount();
-  npos -= e * 20;  // 20은 스크롤 속도 (조정 가능)
+  npos -= e * 40;  // 40은 스크롤 속도 (조정 가능)
   
   // 스크롤 제한: 화면을 넘어가지 않도록
   npos = constrain(npos, -548, 0);  
@@ -122,9 +131,7 @@ public void mouseWheel(MouseEvent event) {
   pos += (npos - pos) * 0.1f;
   
   scrollY = PApplet.parseInt(pos);
-  
-  println("scrollY 업데이트 : " + scrollY);
-  }
+}
 class AssistWidget extends Widget{
   int selectedIndex = -1; // 선택된 옵션의 인덱스 (-1은 선택 없음)
 
@@ -179,6 +186,46 @@ class BookWidget extends Widget{
 
         image(bookImage, x, y, width, height);
 
+    }
+}
+
+class CalenderWidget extends Widget{
+    PImage calenderImage, calenderPlusImage;
+    float scrollY;
+    String CalenderURL = "https://calendar.google.com/calendar/u/0/r?pli=1";
+
+    CalenderWidget(float x, float y, float width, float height,
+     float radius, int bgColor){
+        super(x, y, width, height, radius, bgColor);
+
+        calenderImage = loadImage("calender.png");
+        calenderPlusImage = loadImage("calenderPlus.png");
+    }
+
+    @Override public 
+    void display(){
+        fill(255);
+
+        image(calenderImage, x, y, width, height);
+        image(calenderPlusImage, x+114, y+26, 53,56);
+    }
+
+    public boolean isPluseClicked(float mouseX, float mouseY, float scrollY){
+        float plusX = x + 114;
+        float plusY = y + 26 + scrollY;
+        float plusWidth = 53;
+        float plusHeigh = 56;
+
+        if(mouseX > plusX && mouseX < plusX + plusWidth &&
+        mouseY > plusY && mouseY < plusY + plusHeigh){
+            println("플러스 버튼 클릭");
+            return true;
+        }
+        return false;
+    }
+
+    public void moveLink(){
+        link(CalenderURL);
     }
 }
 
