@@ -34,6 +34,7 @@ WeatherWidget weatherWidget;
 NoteWidget noteWidget;
 StatusWidget statusWidget;
 AssistWidget assistWidget;
+CalenderWidget calenderWidget;
 
 
 public void setup() {
@@ -49,7 +50,8 @@ public void setup() {
   musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(0xFFFFFFFF));
-  
+  calenderWidget = new CalenderWidget(22, 548, 190, 296, 20, color(104,104,104));
+
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
   widgets.add(weatherWidget);
@@ -58,6 +60,7 @@ public void setup() {
   widgets.add(musicWidget);
   widgets.add(noteWidget); 
   widgets.add(assistWidget);
+  widgets.add(calenderWidget);
 }
 
 public void draw() {
@@ -180,6 +183,27 @@ class BookWidget extends Widget{
         image(bookImage, x, y, width, height);
 
     }
+}
+
+class CalenderWidget extends Widget{
+    PImage calenderImage, calenderPlusImage;
+
+    CalenderWidget(float x, float y, float width, float height,
+     float radius, int bgColor){
+        super(x, y, width, height, radius, bgColor);
+
+        calenderImage = loadImage("calender.png");
+        calenderPlusImage = loadImage("calenderPlus.png");
+    }
+
+    @Override public 
+    void display(){
+        fill(255);
+
+        image(calenderImage, x, y, width, height);
+        image(calenderPlusImage, x+114, y+26, 53,56);
+    }
+
 }
 
 class ContestWidget extends Widget{
