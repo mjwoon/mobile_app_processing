@@ -81,6 +81,9 @@ void mousePressed() {
       } else if (contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)) {
         print("이전 공모전");
         contestWidget.beforeScreen();
+      } else if (contestWidget.isPluseClicked(mouseX,mouseY,scrollY) && 
+      contestWidget.plusIndex == 1){
+        contestWidget.moveLink();
       }
     }
   } 
