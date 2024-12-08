@@ -20,8 +20,8 @@ class ContestWidget extends Widget{
         contestImg[0] = loadImage("contest1.png");
         contestImg[1] = loadImage("contest2.png");
         plusImage = loadImage("Plus.png");
-        rightArrow = loadImage("rightArrow.png");
-        leftArrow = loadImage("leftArrow.png");
+        rightArrow = loadImage("CrightArrow.png");
+        leftArrow = loadImage("CleftArrow.png");
 
         contestTitle[0] = "Title1";
         contestTitle[1] = "Title2";
