@@ -16,25 +16,31 @@ GamjaWidget gamjaWidget;
 MusicWidget musicWidget;
 BookWidget bookWidget;
 BatteryWidget batteryWidget;
+WeatherWidget weatherWidget;
+NoteWidget noteWidget;
 
 
 void setup() {
-    size(412, 1415);
+    size(412, 1064);
     background(255);
 
-    ArrowImage = loadImage("Arrow.png");
+    ArrowImage = loadImage("Arrow.png");      
 
     cp5 = new ControlP5(this);  // ControlP5 초기화
 
     gamjaWidget = new GamjaWidget(26, 822 + scrollY, 368, 224, color(200, 200, 255));
-    musicWidget = new MusicWidget(214,1064 + scrollY, 176, 104, color(220,220,220));
+    musicWidget = new MusicWidget(214, 1064 + scrollY, 176, 104, color(220,220,220));
     bookWidget = new BookWidget(26, 16 + scrollY, 380, 224, color(255,220,220));
     batteryWidget = new BatteryWidget(22, 281 + scrollY, 368,90, color(255));
+    weatherWidget = new WeatherWidget(26, 522 + scrollY, 368, 138, color(200, 200, 255));
+    noteWidget = new NoteWidget(26, 722 + scrollY, 174, 174, color(200, 200, 255));
 
     widgets.add(gamjaWidget);
     widgets.add(musicWidget);
     widgets.add(bookWidget);
     widgets.add(batteryWidget);
+    widgets.add(weatherWidget);
+    widgets.add(noteWidget); 
 
     cp5.addButton("ArrowBtn")
      .setPosition(376,934 + scrollY)
