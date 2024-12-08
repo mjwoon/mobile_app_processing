@@ -7,7 +7,7 @@ class MusicWidget extends Widget{
 
   MusicWidget(float x, float y, float width, float height, float radius,color bgColor) {
     super(x, y, width, height, radius, bgColor);
-    MusicImage = loadImage("widget_music.png");
+    MusicImage = loadImage("music.png");
   }
   
 
