@@ -93,6 +93,7 @@ void mousePressed() {
         contestWidget.beforeScreen();
       } else if (contestWidget.isPluseClicked(mouseX,mouseY,scrollY) && 
       contestWidget.plusIndex == 1){
+        println("공모전 사이트로 이동");
         contestWidget.moveLink();
       }
     } else if (widget instanceof CalenderWidget){
