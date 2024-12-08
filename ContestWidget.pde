@@ -2,16 +2,15 @@
 class ContestWidget extends Widget{
 
     PImage[] contestImg = new PImage[2];
-    PImage plusImage;
-    PImage rightArrow;
-    PImage leftArrow;
+    PImage plusImage,rightArrow,leftArrow;
 
     String[] contestTitle = new String[2];
     String[] contestDate = new String[2];
     boolean screenChanged = false;  
     float scrollY;
     int currentIndex = 0; 
-    int plusIndex = 0;
+    int plusIndex = 0; // 1일 때는 plus 이미지 나옴
+    String ContestUrl = "https://linkareer.com/list/contest?filterBy_categoryIDs=38&filterType=CATEGORY&orderBy_direction=DESC&orderBy_field=CREATED_AT&page=1";
 
 
     ContestWidget(float x, float y, float width, float height,
@@ -85,6 +84,10 @@ class ContestWidget extends Widget{
         }
     }
 
+    void moveLink(){
+        link(ContestUrl);
+    }
+
     void beforeScreen(){
         if (currentIndex > 0) {
             currentIndex -= 1;  // 이전 공모전으로
@@ -119,4 +122,17 @@ class ContestWidget extends Widget{
         return false;
     }
 
+    boolean isPluseClicked(float mouseX,float mouseY, float scrollY){
+        float plusX = x + 45;
+        float plusY = y + 90;
+        float plusWidth = 82;
+        float plusHeigh = 82;
+
+        if(mouseX > plusX && mouseX < plusX + plusWidth &&
+        mouseY > plusY && mouseY < plusY + plusHeigh){
+            println("플러스 버튼 클릭");
+            return true;
+        }
+        return false;
+    }
 }
