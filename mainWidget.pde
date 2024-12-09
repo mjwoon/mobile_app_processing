@@ -27,7 +27,7 @@ void setup() {
   batteryWidget = new BatteryWidget(22, 286 + scrollY, 368, 90, 20, color(255));
   weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 20, color(200, 200, 255));
   contestWidget = new ContestWidget(215, 558, 173, 258, 20, color(104,104,104));
-  gamjaWidget = new GamjaWidget(22, 838+ scrollY, 368, 224, 20, color(200, 200, 255));
+  gamjaWidget = new GamjaWidget(22, 838 + scrollY, 368, 224, 20, color(249, 242, 232));
   musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(#ffffff));
@@ -73,8 +73,14 @@ void mousePressed() {
   for (Widget widget : widgets) {
     if (widget instanceof GamjaWidget) {
       GamjaWidget gamjaWidget = (GamjaWidget) widget;
-      if (gamjaWidget.isArrowClicked(mouseX, mouseY,scrollY)) {
-        println("다음 화면 전환");
+      if(gamjaWidget.isGamjaClicked(mouseX,mouseY,scrollY)){
+        println("새로운 감자 표정과 글귀");
+        gamjaWidget.changeImage();
+      } else if(gamjaWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)){
+        println("감자 화면");
+        gamjaWidget.beforeScreen();
+      } else if(gamjaWidget.isRightArrowClicked(mouseX,mouseY,scrollY)){
+        println("멘트화면");
         gamjaWidget.nextScreen();
       }
     } else if (widget instanceof ContestWidget) {
@@ -85,8 +91,9 @@ void mousePressed() {
       } else if (contestWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)) {
         print("이전 공모전");
         contestWidget.beforeScreen();
-      } else if (contestWidget.isPluseClicked(mouseX,mouseY,scrollY) && 
+      } else if (contestWidget.isPlusClicked(mouseX,mouseY,scrollY) && 
       contestWidget.plusIndex == 1){
+        println("공모전 사이트로 이동");
         contestWidget.moveLink();
       }
     } else if (widget instanceof CalenderWidget){
