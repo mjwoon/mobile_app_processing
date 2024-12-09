@@ -50,7 +50,7 @@ public void setup() {
   musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(0xFFFFFFFF));
-  calenderWidget = new CalenderWidget(22, 548, 190, 296, 20, color(104,104,104));
+  calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
 
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
@@ -522,7 +522,7 @@ class MusicWidget extends Widget{
 
   @Override public 
   void display() {
-    fill(255, 204, 0);  // MusicWidget만의 고유한 색상
+    fill(249,242,232);  // MusicWidget만의 고유한 색상
     rect(x, y, width, height,radius);
     fill(0);
 
@@ -541,7 +541,7 @@ class NoteWidget extends Widget {
 
   @Override public 
   void display() {
-    fill(0xFFFFFFFF);  
+    fill(249,242,232);  
     rect(x, y, width, height);
     noStroke(); 
     image(noteImage, x, y, width, height);

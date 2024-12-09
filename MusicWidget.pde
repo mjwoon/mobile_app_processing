@@ -13,7 +13,7 @@ class MusicWidget extends Widget{
 
   @Override
   void display() {
-    fill(255, 204, 0);  // MusicWidget만의 고유한 색상
+    fill(249,242,232);  // MusicWidget만의 고유한 색상
     rect(x, y, width, height,radius);
     fill(0);
 

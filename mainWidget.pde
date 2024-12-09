@@ -31,7 +31,7 @@ void setup() {
   musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(#ffffff));
-  calenderWidget = new CalenderWidget(22, 548, 190, 296, 20, color(104,104,104));
+  calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
 
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
