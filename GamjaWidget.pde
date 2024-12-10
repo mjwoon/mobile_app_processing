@@ -12,6 +12,11 @@ class GamjaWidget extends Widget{
   boolean screenChanged = false;  // 화면 전환 여부 확인
   float scrollY; // 스크롤 위치를 저장할 변수
 
+  // 감자 클릭 후 멘트를 표시하기 위한 추가 변수
+  boolean showMent = false;  // 멘트 표시 여부
+  int mentStartTime = 0;     // 멘트 표시 시작 시간
+
+
   GamjaWidget(float x, float y, float width, float height
   ,float radius, color bgColor) {
     super(x, y, width, height, radius, bgColor);
@@ -45,7 +50,17 @@ class GamjaWidget extends Widget{
 
     if(!screenChanged){
       image(gamjaImages[currentIndex],x + 101,y + 42,166,154); // 감자 사진
-      image(gamjaMents[currentIndex],x + 210, y+ 38,139,14);  // 감자의 멘트
+      // image(gamjaMents[currentIndex],x + 210, y+ 38,139,14);  // 감자의 멘트
+      
+      // 감자 멘트를 클릭한 후 2초 동안만 표시
+      if (showMent) {
+        image(gamjaMents[currentIndex], x + 210, y + 38, 139, 14);
+        // 2초가 지나면 멘트를 숨김
+        if (millis() - mentStartTime > 2000) {
+          showMent = false;
+        }
+      }
+
       image(rightArrowImage, x + 330, y+106,12,12);
       image(pointImage1, x + 168, y+195);
       image(pointImage2, x + 183, y+195);
@@ -93,6 +108,8 @@ class GamjaWidget extends Widget{
     if(mouseX > gamjaX && mouseX < gamjaX + gamjaWidth &&
     mouseY > gamjaY && mouseY < gamjaY + gamjaHeight){
         println("감자 클릭");
+        showMent = true;
+        mentStartTime = millis();     
         return true;
     }
     return false;
