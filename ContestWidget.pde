@@ -47,15 +47,15 @@ class ContestWidget extends Widget{
 
         if (currentIndex == 0) {
             text(contestTitle[currentIndex], x + 47, y + 40);  // 0번 인덱스일 때
-            image(selectPoint, x+71, y+240);  // 하단 포인트 추가
-            image(normalPoint, x+80, y+240);
-            image(normalPoint, x+89, y+240);
+            image(normalPoint, x+71, y+240);  // 하단 포인트 추가
+            image(selectPoint, x+80, y+240);
+            image(selectPoint, x+89, y+240);
 
         } else if (currentIndex == 1) {
             text(contestTitle[currentIndex], x + 47, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
-            image(normalPoint, x+71, y+240);  // 하단 포인트 추가
-            image(selectPoint, x+80, y+240);
-            image(normalPoint, x+89, y+240);
+            image(selectPoint, x+71, y+240);  // 하단 포인트 추가
+            image(normalPoint, x+80, y+240);
+            image(selectPoint, x+89, y+240);
         }
 
         image(contestImg[currentIndex], x + 33, y + 55, 110, 156);
@@ -82,9 +82,9 @@ class ContestWidget extends Widget{
             image(plusImage, x + 45, y + 90, 82, 82);
             image(leftArrow, x + 10, y + 130, 10, 15);
 
-            image(normalPoint, x+71, y+240);  // 하단 포인트 추가
-            image(normalPoint, x+80, y+240);
-            image(selectPoint, x+89, y+240);
+            image(selectPoint, x+71, y+240);  // 하단 포인트 추가
+            image(selectPoint, x+80, y+240);
+            image(normalPoint, x+89, y+240);
 
             fill(255);
             textSize(18);
