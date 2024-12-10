@@ -13,6 +13,7 @@ class ContestWidget extends Widget{
     int plusIndex = 0; // 1일 때는 plus 이미지 나옴
     String ContestUrl = "https://linkareer.com/list/contest?filterBy_categoryIDs=38&filterType=CATEGORY&orderBy_direction=DESC&orderBy_field=CREATED_AT&page=1";
 
+    PFont koreanFont;
 
     ContestWidget(float x, float y, float width, float height,
     float radius, color bgColor){
@@ -21,8 +22,8 @@ class ContestWidget extends Widget{
         contestImg[0] = loadImage("contest1.png");
         contestImg[1] = loadImage("contest2.png");
         
-        contestTitle[0] = "Title1";
-        contestTitle[1] = "Title2";
+        contestTitle[0] = "제 11회 동교인재상";
+        contestTitle[1] = "도로시";
 
         contestDate[0] = "24.9.1 ~ 24.10.15";
         contestDate[1] = "24.10.10 ~ 24.10.31";
@@ -35,6 +36,8 @@ class ContestWidget extends Widget{
         selectPoint = loadImage("CSelectPoint.png");
         normalPoint = loadImage("CnormalPoint.png");
 
+        koreanFont = createFont("MaruBuri-Bold.ttf",32);
+
     }
 
     @Override
@@ -42,17 +45,19 @@ class ContestWidget extends Widget{
         fill(154,159,166);
         rect(215,558,173,258,20);
 
-        textSize(32);
+        textFont(koreanFont);
         fill(255);
 
         if (currentIndex == 0) {
-            text(contestTitle[currentIndex], x + 47, y + 40);  // 0번 인덱스일 때
+            textSize(18);
+            text(contestTitle[currentIndex], x + 15, y + 40);  // 0번 인덱스일 때
             image(normalPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
 
         } else if (currentIndex == 1) {
-            text(contestTitle[currentIndex], x + 47, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
+            textSize(25);
+            text(contestTitle[currentIndex], x + 50, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(normalPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
@@ -88,7 +93,7 @@ class ContestWidget extends Widget{
 
             fill(255);
             textSize(18);
-            text("Add", x + 70, y + 210);
+            text("추가", x + 70, y + 210);
         }
         
     }
