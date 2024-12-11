@@ -4,7 +4,6 @@ ArrayList<Widget> widgets = new ArrayList<Widget>();
 int scrollY = 0; // 스크롤을 위한 변수
 // boolean isDragging = false; // 드래그 중인지 여부 확인
 float pos, npos;  // pos는 부드러운 스크롤을 위한 위치, npos는 목표 스크롤 위치
-PImage statusImage;
 
 GamjaWidget gamjaWidget;
 MusicWidget musicWidget;
@@ -16,6 +15,7 @@ NoteWidget noteWidget;
 StatusWidget statusWidget;
 AssistWidget assistWidget;
 CalenderWidget calenderWidget;
+FullNote fullNote;
 
 
 void setup() {
@@ -28,10 +28,11 @@ void setup() {
   weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 20, color(200, 200, 255));
   contestWidget = new ContestWidget(215, 558, 173, 258, 20, color(104,104,104));
   gamjaWidget = new GamjaWidget(22, 838 + scrollY, 368, 224, 20, color(249, 242, 232));
-  musicWidget = new MusicWidget(214, 1084 + scrollY, 176, 104, 20, color(220,220,220)); 
+  musicWidget = new MusicWidget(212, 1084 + scrollY, 188, 116, 20, color(220,220,220)); 
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(#ffffff));
-  calenderWidget = new CalenderWidget(22, 548, 190, 296, 20, color(104,104,104));
+  calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
+  fullNote = new FullNote(0, 40, 480, 800, 0, color(249,242,232));
 
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
@@ -65,21 +66,25 @@ void drawScrollableContent() {
   for (Widget widget : widgets) {
     widget.display();
   }
+}  
+
+void goMemo() {
+  fullNote.display();
 }
 
 // 마우스 클릭 
 void mousePressed() {
-
+  
   for (Widget widget : widgets) {
     if (widget instanceof GamjaWidget) {
       GamjaWidget gamjaWidget = (GamjaWidget) widget;
-      if(gamjaWidget.isGamjaClicked(mouseX,mouseY,scrollY)){
+      if (gamjaWidget.isGamjaClicked(mouseX,mouseY,scrollY)) {
         println("새로운 감자 표정과 글귀");
         gamjaWidget.changeImage();
-      } else if(gamjaWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)){
+      } else if (gamjaWidget.isLeftArrowClicked(mouseX,mouseY,scrollY)) {
         println("감자 화면");
         gamjaWidget.beforeScreen();
-      } else if(gamjaWidget.isRightArrowClicked(mouseX,mouseY,scrollY)){
+      } else if (gamjaWidget.isRightArrowClicked(mouseX,mouseY,scrollY)) {
         println("멘트화면");
         gamjaWidget.nextScreen();
       }
@@ -92,23 +97,54 @@ void mousePressed() {
         print("이전 공모전");
         contestWidget.beforeScreen();
       } else if (contestWidget.isPlusClicked(mouseX,mouseY,scrollY) && 
-      contestWidget.plusIndex == 1){
+        contestWidget.plusIndex == 1) {
         println("공모전 사이트로 이동");
         contestWidget.moveLink();
       }
-    } else if (widget instanceof CalenderWidget){
+    } else if (widget instanceof CalenderWidget) {
       CalenderWidget calenderWidget = (CalenderWidget) widget;
-      if(calenderWidget.isPluseClicked(mouseX, mouseY, scrollY)){
+      if (calenderWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
         println("구글 캘린더로 이동");
         calenderWidget.moveLink();
       }
+    } else if (widget instanceof MusicWidget) {
+      MusicWidget musicWidget = (MusicWidget) widget;
+      if (musicWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
+        println("음악 사이트로 이동");
+        musicWidget.moveLink();
+      }
+    } else if (widget instanceof WeatherWidget) {
+      WeatherWidget weatherWidget = (WeatherWidget) widget;
+      if (weatherWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
+        println("날씨 사이트로 이동");
+        weatherWidget.moveLink();
+      }
+    } else if (widget instanceof BookWidget) {
+      BookWidget bookWidget = (BookWidget) widget;
+      if (bookWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
+        bookWidget.moveLink();        
+      } else if (bookWidget.isPluseClicked2(mouseX, mouseY, scrollY)) {
+        bookWidget.moveLink2();
+      } else if (bookWidget.isPluseClicked3(mouseX, mouseY, scrollY)) {
+        bookWidget.moveLink3();
+      } else if (bookWidget.isPluseClicked4(mouseX, mouseY, scrollY)) {
+        bookWidget.moveLink4();
+      } 
+    } else if (widget instanceof AssistWidget) {
+      AssistWidget assistWidget = (AssistWidget) widget;
+      assistWidget.handleMousePressed(mouseX, mouseY); // 체크리스트 클릭 처리
+    } else if (widget instanceof NoteWidget) {
+      NoteWidget noteWidget = (NoteWidget) widget;
+      if (noteWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
+        println("메모로 이동");
+        goMemo();
+      }
     }
   } 
-
 }
 
 void mouseWheel(MouseEvent event) {
-
+  
   float e = event.getCount();
   npos -= e * 40;  // 40은 스크롤 속도 (조정 가능)
   
