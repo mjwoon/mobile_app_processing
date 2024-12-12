@@ -22,16 +22,16 @@ void setup() {
   size(412, 888);
   background(255);
   
-  statusWidget = new StatusWidget(22, 0, 372, 44, 20, color(255, 255, 255));
+  statusWidget = new StatusWidget(22, 0, 372, 44, 25, color(255, 255, 255));
   bookWidget = new BookWidget(16, 40 + scrollY, 385, 227, 0, color(255,220,220)); 
-  batteryWidget = new BatteryWidget(22, 286 + scrollY, 368, 90, 20, color(255));
-  weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 20, color(200, 200, 255));
-  contestWidget = new ContestWidget(215, 558, 173, 258, 20, color(104,104,104));
-  gamjaWidget = new GamjaWidget(22, 838 + scrollY, 368, 224, 20, color(249, 242, 232));
-  musicWidget = new MusicWidget(212, 1084 + scrollY, 188, 116, 20, color(220,220,220)); 
-  noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
-  assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(#ffffff));
-  calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
+  batteryWidget = new BatteryWidget(22, 286 + scrollY, 368, 90, 25, color(255));
+  weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 25, color(200, 200, 255));
+  contestWidget = new ContestWidget(215, 558, 173, 258, 25, color(104,104,104));
+  gamjaWidget = new GamjaWidget(22, 838 + scrollY, 368, 224, 25, color(249, 242, 232));
+  musicWidget = new MusicWidget(212, 1084 + scrollY, 188, 116, 25, color(220,220,220)); 
+  noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 25, color(200, 200, 255));
+  assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 25, color(#ffffff));
+  calenderWidget = new CalenderWidget(18, 544, 190, 296, 25, color(104,104,104));
   fullNote = new FullNote(0, 40, 480, 800, 0, color(249,242,232));
 
   widgets.add(bookWidget);

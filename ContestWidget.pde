@@ -12,21 +12,21 @@ class ContestWidget extends Widget{
     int currentIndex = 0; 
     int plusIndex = 0; // 1일 때는 plus 이미지 나옴
     String ContestUrl = "https://linkareer.com/list/contest?filterBy_categoryIDs=38&filterType=CATEGORY&orderBy_direction=DESC&orderBy_field=CREATED_AT&page=1";
-
+    String Contest1Url = "https://www.wevity.com/index_university.php?c=find&s=_university&sp=name&sw=%EC%9E%91%EA%B0%80+%EA%B3%B5%EB%AA%A8%EC%A0%84&gbn=viewok&gp=1&ix=90811";
     PFont koreanFont;
 
     ContestWidget(float x, float y, float width, float height,
     float radius, color bgColor){
         super(x,y, width, height, radius, bgColor);
 
-        contestImg[0] = loadImage("contest1.png");
+        contestImg[0] = loadImage("contestImage1.jpg");
         contestImg[1] = loadImage("contest2.png");
         
-        contestTitle[0] = "제 11회 동교인재상";
-        contestTitle[1] = "도로시";
+        contestTitle[0] = "2024 신예 작가 공모전";
+        contestTitle[1] = "계간 포지션 공모전";
 
-        contestDate[0] = "24.9.1 ~ 24.10.15";
-        contestDate[1] = "24.10.10 ~ 24.10.31";
+        contestDate[0] = "24.08.15 ~ 24.12.25";
+        contestDate[1] = "24.12.06 ~ 25.01.15";
 
         plusImage = loadImage("Plus.png");
 
@@ -43,21 +43,21 @@ class ContestWidget extends Widget{
     @Override
     void display(){
         fill(154,159,166);
-        rect(215,558,173,258,20);
+        rect(215,558,173,258,25);
 
         textFont(koreanFont);
         fill(255);
 
         if (currentIndex == 0) {
-            textSize(18);
-            text(contestTitle[currentIndex], x + 15, y + 40);  // 0번 인덱스일 때
+            textSize(15);
+            text(contestTitle[currentIndex], x + 15, y + 30);  // 0번 인덱스일 때
             image(normalPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
 
         } else if (currentIndex == 1) {
-            textSize(25);
-            text(contestTitle[currentIndex], x + 50, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
+            textSize(15);
+            text(contestTitle[currentIndex], x + 25, y + 30);  // 1번 인덱스일 때 (위치 변경 가능)
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(normalPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
@@ -68,24 +68,24 @@ class ContestWidget extends Widget{
         // 화살표 처리
         if (currentIndex == 0) {
             // 0번 인덱스에서는 오른쪽 화살표만
-            image(rightArrow, x + 155, y + 130, 10, 15);
+            image(rightArrow, x + 155, y + 120, 10, 15);
         } else if (currentIndex == 1) {
             // 1번 인덱스에서는 좌우 화살표 모두
-            image(leftArrow, x + 10, y + 130, 10, 15);
-            image(rightArrow, x + 155, y + 130, 10, 15);
+            image(leftArrow, x + 10, y + 120, 10, 15);
+            image(rightArrow, x + 155, y + 120, 10, 15);
         }
 
         textSize(16);
         fill(255);
-        text(contestDate[currentIndex], x + 33, y + 233);
+        text(contestDate[currentIndex], x + 19, y + 225);
 
         // 화면 변경 여부 확인 후 Plus 이미지 표시
         if (plusIndex == 1) {
             fill(154,159,166);
-            rect(215,558,173,258,20);
+            rect(215,558,173,258,25);
 
-            image(plusImage, x + 45, y + 90, 82, 82);
-            image(leftArrow, x + 10, y + 130, 10, 15);
+            image(plusImage, x + 45, y + 80, 82, 82);
+            image(leftArrow, x + 10, y + 120, 10, 15);
 
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
@@ -120,7 +120,7 @@ class ContestWidget extends Widget{
 
     boolean isRightArrowClicked(float mouseX, float mouseY, float scrollY){
         float rArrowX = x + 160;
-        float rArrowY = y + 130 + scrollY;
+        float rArrowY = y + 120 + scrollY;
         float rArrowWidth = 10;
         float rArrowHeight  = 15;
 
@@ -134,7 +134,7 @@ class ContestWidget extends Widget{
 
     boolean isLeftArrowClicked(float mouseX, float mouseY, float scrollY){
         float lArrowX = x+10;
-        float lArrowY = y+130+scrollY;
+        float lArrowY = y+120+scrollY;
         float lArrowWidth = 10;
         float lArrowHeight  = 15;
        if(mouseX > lArrowX && mouseX < lArrowX + lArrowWidth &&
@@ -147,7 +147,7 @@ class ContestWidget extends Widget{
 
     boolean isPlusClicked(float mouseX,float mouseY, float scrollY){
         float plusX = x + 45;
-        float plusY = y + 90 + scrollY;
+        float plusY = y + 80 + scrollY;
         float plusWidth = 82;
         float plusHeigh = 82;
 
