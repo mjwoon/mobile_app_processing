@@ -61,14 +61,14 @@ class GamjaWidget extends Widget{
         }
       }
 
-      image(rightArrowImage, x + 330, y+106,12,12);
+      image(rightArrowImage, x + 330, y+100,12,12); // 오른쪽 화살표
       image(pointImage1, x + 168, y+195);
       image(pointImage2, x + 183, y+195);
     } else {
-      image(novelMent, x + 57, y + 95, 254, 22);   // 글귀
-      image(novelWriter,x + 270, y + 19,95,14);   // 글귀 작가
-      image(leftArrowImage, x + 12, y+106,12,12);
-      image(pointImage1, x + 183, y+195);
+      image(novelMent, x + 70, y + 95, 250, 20);   // 글귀
+      image(novelWriter,x + 255, y + 19,95,14);   // 글귀 작가
+      image(leftArrowImage, x + 12, y+100,12,12); // 왼쪽 화살표
+      image(pointImage1, x + 183, y+195);     
       image(pointImage2, x + 168, y+195);
     }
   }
