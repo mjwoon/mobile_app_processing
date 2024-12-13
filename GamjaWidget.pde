@@ -65,8 +65,8 @@ class GamjaWidget extends Widget{
       image(pointImage1, x + 168, y+195);
       image(pointImage2, x + 183, y+195);
     } else {
-      image(novelMent, x + 40, y + 100, 285, 16);   // 글귀
-      image(novelWriter,x + 250, y + 20,80,13);   // 글귀 작가
+      image(novelMent, x + 57, y + 95, 254, 22);   // 글귀
+      image(novelWriter,x + 270, y + 19,95,14);   // 글귀 작가
       image(leftArrowImage, x + 12, y+106,12,12);
       image(pointImage1, x + 183, y+195);
       image(pointImage2, x + 168, y+195);

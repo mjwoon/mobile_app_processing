@@ -107,16 +107,18 @@ class ContestWidget extends Widget{
         }
     }
 
+    void beforeScreen(){
+        if (plusIndex == 1){
+            currentIndex = contestImg.length - 1;
+            plusIndex = 0;
+        } else if ( currentIndex > 0){
+            currentIndex -= 1;
+        }
+    }
     void moveLink(){
         link(ContestUrl);
     }
 
-    void beforeScreen(){
-        if (currentIndex > 0) {
-            currentIndex -= 1;  // 이전 공모전으로
-            plusIndex = 0;
-        }
-    }
 
     boolean isRightArrowClicked(float mouseX, float mouseY, float scrollY){
         float rArrowX = x + 160;
