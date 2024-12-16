@@ -63,7 +63,7 @@ class ContestWidget extends Widget{
             image(selectPoint, x+89, y+240);
         }
 
-        image(contestImg[currentIndex], x + 33, y + 55, 110, 156);
+        image(contestImg[currentIndex], x + 33, y + 52, 110, 156);
 
         // 화살표 처리
         if (currentIndex == 0) {
@@ -77,7 +77,7 @@ class ContestWidget extends Widget{
 
         textSize(16);
         fill(255);
-        text(contestDate[currentIndex], x + 19, y + 225);
+        text(contestDate[currentIndex], x + 19, y + 232 );
 
         // 화면 변경 여부 확인 후 Plus 이미지 표시
         if (plusIndex == 1) {

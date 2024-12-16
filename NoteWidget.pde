@@ -1,7 +1,7 @@
 class NoteWidget extends Widget {
   PImage noteImage; 
   float scrollY;
-  String MusicURL = "https://music.youtube.com/"; // 노래 링크 
+  String NoteUrl = "https://www.icloud.com/notes/"; // 노래 링크 
   
   NoteWidget(float x, float y, float width, float height, float radius, color bgColor) {
     super(x, y, width, height, radius, bgColor);
@@ -11,9 +11,9 @@ class NoteWidget extends Widget {
   
   @Override
   void display() {
+    noStroke(); 
     fill(249,242,232);  
     rect(x, y, width, height);
-    noStroke(); 
     image(noteImage, x, y, width, height);
   }
   
@@ -30,5 +30,9 @@ class NoteWidget extends Widget {
     }
     return false;
     
+  }
+
+  void moveLink() {
+    link(NoteUrl);
   }
 }

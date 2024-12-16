@@ -9,9 +9,10 @@ class StatusWidget extends Widget {
   
   @Override
   void display() {
+    noStroke();
     fill(249,242,232);
     rect(x, y, width, height);
-    noStroke();
+    
     image(statusImage, x, y, width, height);
   }
   

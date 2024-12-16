@@ -43,7 +43,8 @@ class GamjaWidget extends Widget{
 
   @Override
   void display() {
-    fill(255, 255, 255);  // GamjaWidget만의 고유한 색상
+    stroke(#E0D9D0);
+    fill(#F4E4CE);  // GamjaWidget만의 고유한 색상
     rect(x, y, width, height, radius);
 
     image(gmajaLabelImage, x+324, y+ 191, 20,12);

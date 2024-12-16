@@ -15,7 +15,6 @@ NoteWidget noteWidget;
 StatusWidget statusWidget;
 AssistWidget assistWidget;
 CalenderWidget calenderWidget;
-FullNote fullNote;
 
 
 void setup() {
@@ -24,16 +23,15 @@ void setup() {
   
   statusWidget = new StatusWidget(22, 0, 372, 44, 25, color(255, 255, 255));
   bookWidget = new BookWidget(16, 40 + scrollY, 385, 227, 0, color(255,220,220)); 
-  batteryWidget = new BatteryWidget(22, 286 + scrollY, 368, 90, 25, color(255));
-  weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 25, color(200, 200, 255));
-  contestWidget = new ContestWidget(215, 558, 173, 258, 25, color(104,104,104));
-  gamjaWidget = new GamjaWidget(22, 838 + scrollY, 368, 224, 25, color(249, 242, 232));
-  musicWidget = new MusicWidget(212, 1084 + scrollY, 188, 116, 25, color(220,220,220)); 
-  noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 25, color(200, 200, 255));
-  assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 25, color(#ffffff));
-  calenderWidget = new CalenderWidget(18, 544, 190, 296, 25, color(104,104,104));
-  fullNote = new FullNote(0, 40, 480, 800, 0, color(249,242,232));
-
+  batteryWidget = new BatteryWidget(22, 286 + scrollY, 368, 90, 20, color(255));
+  weatherWidget = new WeatherWidget(22, 398 + scrollY, 368, 138, 20, color(200, 200, 255));
+  contestWidget = new ContestWidget(215, 558, 173, 258, 20, color(104,104,104));
+  gamjaWidget = new GamjaWidget(22, 838 + scrollY, 368, 224, 20, color(249, 242, 232));
+  musicWidget = new MusicWidget(212, 1084 + scrollY, 188, 116, 20, color(220,220,220)); 
+  noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
+  assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(#ffffff));
+  calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
+ 
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
   widgets.add(weatherWidget);
@@ -67,10 +65,6 @@ void drawScrollableContent() {
     widget.display();
   }
 }  
-
-void goMemo() {
-  fullNote.display();
-}
 
 // 마우스 클릭 
 void mousePressed() {
@@ -130,14 +124,25 @@ void mousePressed() {
       } else if (bookWidget.isPluseClicked4(mouseX, mouseY, scrollY)) {
         bookWidget.moveLink4();
       } 
-    } else if (widget instanceof AssistWidget) {
-      AssistWidget assistWidget = (AssistWidget) widget;
-      assistWidget.handleMousePressed(mouseX, mouseY); // 체크리스트 클릭 처리
     } else if (widget instanceof NoteWidget) {
       NoteWidget noteWidget = (NoteWidget) widget;
       if (noteWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
         println("메모로 이동");
-        goMemo();
+        noteWidget.moveLink();
+      }
+    } else if (widget instanceof AssistWidget) {
+      AssistWidget assistWidget = (AssistWidget) widget;
+      if (assistWidget.isChecked(mouseX, mouseY, scrollY)) {
+        println("체크리스트1 클릭");
+      } else if (assistWidget.isChecked2(mouseX, mouseY, scrollY)) {
+        println("체크리스트2 클릭");
+      } else if (assistWidget.isChecked3(mouseX, mouseY, scrollY)) {
+        println("체크리스트3 클릭");
+      } else if (assistWidget.isChecked4(mouseX, mouseY, scrollY)) {
+        println("체크리스트4 클릭");
+      } else if (assistWidget.toApp(mouseX, mouseY, scrollY)) {
+        println("AI 어시 클릭");
+        assistWidget.moveLink();
       }
     }
   } 
