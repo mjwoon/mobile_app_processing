@@ -31,6 +31,7 @@ class AssistWidget extends Widget{
   
   @Override
   void display() {
+    stroke(#E0D9D0);
     fill(#E5E5E5);
     rect(x, y, width, height,radius);
     

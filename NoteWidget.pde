@@ -11,9 +11,9 @@ class NoteWidget extends Widget {
   
   @Override
   void display() {
+    noStroke(); 
     fill(249,242,232);  
     rect(x, y, width, height);
-    noStroke(); 
     image(noteImage, x, y, width, height);
   }
   
