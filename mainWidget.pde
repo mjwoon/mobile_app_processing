@@ -15,7 +15,6 @@ NoteWidget noteWidget;
 StatusWidget statusWidget;
 AssistWidget assistWidget;
 CalenderWidget calenderWidget;
-FullNote fullNote;
 
 
 void setup() {
@@ -32,8 +31,7 @@ void setup() {
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(#ffffff));
   calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
-  fullNote = new FullNote(0, 40, 480, 800, 0, color(249,242,232));
-  
+ 
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
   widgets.add(weatherWidget);
@@ -67,10 +65,6 @@ void drawScrollableContent() {
     widget.display();
   }
 }  
-
-void goMemo() {
-  fullNote.display();
-}
 
 // 마우스 클릭 
 void mousePressed() {
@@ -134,7 +128,7 @@ void mousePressed() {
       NoteWidget noteWidget = (NoteWidget) widget;
       if (noteWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
         println("메모로 이동");
-        goMemo();
+        noteWidget.moveLink();
       }
     } else if (widget instanceof AssistWidget) {
       AssistWidget assistWidget = (AssistWidget) widget;
@@ -144,8 +138,11 @@ void mousePressed() {
         println("체크리스트2 클릭");
       } else if (assistWidget.isChecked3(mouseX, mouseY, scrollY)) {
         println("체크리스트3 클릭");
-      }else if (assistWidget.isChecked4(mouseX, mouseY, scrollY)) {
+      } else if (assistWidget.isChecked4(mouseX, mouseY, scrollY)) {
         println("체크리스트4 클릭");
+      } else if (assistWidget.toApp(mouseX, mouseY, scrollY)) {
+        println("AI 어시 클릭");
+        assistWidget.moveLink();
       }
     }
   } 

@@ -34,7 +34,6 @@ NoteWidget noteWidget;
 StatusWidget statusWidget;
 AssistWidget assistWidget;
 CalenderWidget calenderWidget;
-FullNote fullNote;
 
 
 public void setup() {
@@ -51,8 +50,7 @@ public void setup() {
   noteWidget = new NoteWidget(214, 1210 + scrollY, 174, 174, 20, color(200, 200, 255));
   assistWidget = new AssistWidget(22, 1084 + scrollY, 173, 305, 20, color(0xFFFFFFFF));
   calenderWidget = new CalenderWidget(18, 544, 190, 296, 20, color(104,104,104));
-  fullNote = new FullNote(0, 40, 480, 800, 0, color(249,242,232));
-  
+ 
   widgets.add(bookWidget);
   widgets.add(batteryWidget);
   widgets.add(weatherWidget);
@@ -86,10 +84,6 @@ public void drawScrollableContent() {
     widget.display();
   }
 }  
-
-public void goMemo() {
-  fullNote.display();
-}
 
 // 마우스 클릭 
 public void mousePressed() {
@@ -153,7 +147,7 @@ public void mousePressed() {
       NoteWidget noteWidget = (NoteWidget) widget;
       if (noteWidget.isPluseClicked(mouseX, mouseY, scrollY)) {
         println("메모로 이동");
-        goMemo();
+        noteWidget.moveLink();
       }
     } else if (widget instanceof AssistWidget) {
       AssistWidget assistWidget = (AssistWidget) widget;
@@ -163,8 +157,11 @@ public void mousePressed() {
         println("체크리스트2 클릭");
       } else if (assistWidget.isChecked3(mouseX, mouseY, scrollY)) {
         println("체크리스트3 클릭");
-      }else if (assistWidget.isChecked4(mouseX, mouseY, scrollY)) {
+      } else if (assistWidget.isChecked4(mouseX, mouseY, scrollY)) {
         println("체크리스트4 클릭");
+      } else if (assistWidget.toApp(mouseX, mouseY, scrollY)) {
+        println("AI 어시 클릭");
+        assistWidget.moveLink();
       }
     }
   } 
@@ -245,18 +242,31 @@ class AssistWidget extends Widget{
         } else {
           image(notChecked, x + 20, y + 142, 14, 14);
         }
-      }else if (item.index == 4) {
+      } else if (item.index == 4) {
         if (flag4) {
           image(checked, x + 20, y + 182, 14, 14);
         } else {
           image(notChecked, x + 20, y + 182, 14, 14);
         }
       }
-      
       item.display();
     }
     
   } 
+  
+  public boolean toApp(float mouseX, float mouseY, float scrollY) {
+    float plusX = x + 12;
+    float plusY = y + 20 + scrollY;
+    float plusWidth = 140;
+    float plusHeigh = 20;
+    
+    if (mouseX > plusX && mouseX < plusX + plusWidth && 
+      mouseY > plusY && mouseY < plusY + plusHeigh) {
+      println("AI 어시 클릭");
+      return true;
+    }
+    return false;   
+  }
   
   public boolean isChecked(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
@@ -317,7 +327,13 @@ class AssistWidget extends Widget{
     flag4 = false;
     return false;
   }
+  
+  public void moveLink() {
+    link(CheckListUrl);
+  }
+  
 } 
+
 
 // ChecklistItem 클래스
 class ChecklistItem {
@@ -439,7 +455,6 @@ class BookWidget extends Widget{
     float plusX2 = plusX + 95; 
     float plusX3 = plusX2 + 95;
     float plusX4 = plusX3 + 95;
-    
     
     if (mouseX > plusX4 && mouseX < plusX4 + plusWidth && 
       mouseY > plusY && mouseY < plusY + plusHeigh) {
@@ -666,21 +681,6 @@ class ContestWidget extends Widget{
         return false;
     }
 }
-class FullNote extends Widget {
-  PImage fullNote;
-  
-  FullNote(float x, float y, float width, float height, float radius, int bgColor) {
-    super(x, y, width, height, radius, bgColor);
-    fullNote = loadImage("memopage.png");
-  }
-  
-  @Override public 
-  void display() {
-    rect(x, y, width, height);
-    noStroke(); 
-    image(fullNote, x, y, width, height);
-  }
-}
 
 
 class GamjaWidget extends Widget{
@@ -861,7 +861,7 @@ class MusicWidget extends Widget{
 class NoteWidget extends Widget {
   PImage noteImage; 
   float scrollY;
-  String MusicURL = "https://music.youtube.com/"; // 노래 링크 
+  String NoteUrl = "https://www.icloud.com/notes/"; // 노래 링크 
   
   NoteWidget(float x, float y, float width, float height, float radius, int bgColor) {
     super(x, y, width, height, radius, bgColor);
@@ -890,6 +890,10 @@ class NoteWidget extends Widget {
     }
     return false;
     
+  }
+
+  public void moveLink() {
+    link(NoteUrl);
   }
 }
 class StatusWidget extends Widget {

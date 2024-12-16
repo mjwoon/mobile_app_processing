@@ -81,7 +81,6 @@ class BookWidget extends Widget{
     float plusX3 = plusX2 + 95;
     float plusX4 = plusX3 + 95;
     
-    
     if (mouseX > plusX4 && mouseX < plusX4 + plusWidth && 
       mouseY > plusY && mouseY < plusY + plusHeigh) {
       println("밀리의서재 마이페이지 클릭");

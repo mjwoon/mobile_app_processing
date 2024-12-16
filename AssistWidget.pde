@@ -60,18 +60,31 @@ class AssistWidget extends Widget{
         } else {
           image(notChecked, x + 20, y + 142, 14, 14);
         }
-      }else if (item.index == 4) {
+      } else if (item.index == 4) {
         if (flag4) {
           image(checked, x + 20, y + 182, 14, 14);
         } else {
           image(notChecked, x + 20, y + 182, 14, 14);
         }
       }
-      
       item.display();
     }
     
   } 
+  
+  boolean toApp(float mouseX, float mouseY, float scrollY) {
+    float plusX = x + 12;
+    float plusY = y + 20 + scrollY;
+    float plusWidth = 140;
+    float plusHeigh = 20;
+    
+    if (mouseX > plusX && mouseX < plusX + plusWidth && 
+      mouseY > plusY && mouseY < plusY + plusHeigh) {
+      println("AI 어시 클릭");
+      return true;
+    }
+    return false;   
+  }
   
   boolean isChecked(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
@@ -132,7 +145,13 @@ class AssistWidget extends Widget{
     flag4 = false;
     return false;
   }
+  
+  void moveLink() {
+    link(CheckListUrl);
+  }
+  
 } 
+
 
 // ChecklistItem 클래스
 class ChecklistItem {
