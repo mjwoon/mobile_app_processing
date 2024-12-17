@@ -1,7 +1,8 @@
-boolean flag =  false;
-boolean flag2 =  false;
-boolean flag3 =  false;
-boolean flag4 =  false;
+int flag = 0;
+int flag2 = 0;
+int flag3 = 0;
+int flag4 = 0;
+
 
 class AssistWidget extends Widget{
   PImage aiImage;
@@ -44,25 +45,25 @@ class AssistWidget extends Widget{
     
     for (ChecklistItem item : checklist) {
       if (item.index == 1) {
-        if (flag) {
+        if (flag % 2 == 1) {
           image(checked, x + 20, y + 62, 14, 14);
         } else {
           image(notChecked, x + 20, y + 62, 14, 14);
         }
       } else if (item.index == 2) {
-        if (flag2) {
+        if (flag2 % 2 == 1) {
           image(checked, x + 20, y + 102, 14, 14);
         } else {
           image(notChecked, x + 20, y + 102, 14, 14);
         }
       } else if (item.index == 3) {
-        if (flag3) {
+        if (flag3  % 2 == 1) {
           image(checked, x + 20, y + 142, 14, 14);
         } else {
           image(notChecked, x + 20, y + 142, 14, 14);
         }
       } else if (item.index == 4) {
-        if (flag4) {
+        if (flag4 % 2 == 1) {
           image(checked, x + 20, y + 182, 14, 14);
         } else {
           image(notChecked, x + 20, y + 182, 14, 14);
@@ -81,7 +82,7 @@ class AssistWidget extends Widget{
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
       mouseY > plusY && mouseY < plusY + plusHeigh) {
-      println("AI 어시 클릭");
+      println("AI 어시 이동");
       return true;
     }
     return false;   
@@ -94,9 +95,14 @@ class AssistWidget extends Widget{
     float plusHeigh = 20;
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
-      mouseY > plusY && mouseY < plusY + plusHeigh) {
-      println("체크리스트1 클릭");
-      flag = true;
+      mouseY > plusY && mouseY < plusY + plusHeigh && flag % 2 == 0) {
+      println("체크리스트1 on");
+      flag += 1;
+      return true;
+    } else if (mouseX > plusX && mouseX < plusX + plusWidth && 
+      mouseY > plusY && mouseY < plusY + plusHeigh && flag % 2 == 1) {
+      println("체크리스트1 off");
+      flag += 1;
       return true;
     }
     return false;
@@ -110,7 +116,12 @@ class AssistWidget extends Widget{
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
       mouseY > plusY && mouseY < plusY + plusHeigh) {
       println("체크리스트2 클릭");
-      flag2 = true;
+      flag2 += 1;
+      return true;
+    } else if (mouseX > plusX && mouseX < plusX + plusWidth && 
+      mouseY > plusY && mouseY < plusY + plusHeigh && flag2 % 2 == 1) {
+      println("체크리스트2 off");
+      flag2 += 1;
       return true;
     }
     return false;
@@ -125,7 +136,12 @@ class AssistWidget extends Widget{
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
       mouseY > plusY && mouseY < plusY + plusHeigh) {
       println("체크리스트3 클릭");
-      flag3 = true;
+      flag3 += 1;
+      return true;
+    } else if (mouseX > plusX && mouseX < plusX + plusWidth && 
+      mouseY > plusY && mouseY < plusY + plusHeigh && flag3 % 2 == 1) {
+      println("체크리스트3 off");
+      flag3 += 1;
       return true;
     }
     return false;
@@ -140,10 +156,14 @@ class AssistWidget extends Widget{
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
       mouseY > plusY && mouseY < plusY + plusHeigh) {
       println("체크리스트4 클릭");
-      flag4 = true;
+      flag4 += 1;
+      return true;
+    } else if (mouseX > plusX && mouseX < plusX + plusWidth && 
+      mouseY > plusY && mouseY < plusY + plusHeigh && flag4 % 2 == 1) {
+      println("체크리스트2 off");
+      flag4 += 1;
       return true;
     }
-    flag4 = false;
     return false;
   }
   
