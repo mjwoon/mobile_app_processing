@@ -586,7 +586,7 @@ class ContestWidget extends Widget{
             image(selectPoint, x+89, y+240);
         }
 
-        image(contestImg[currentIndex], x + 33, y + 52, 110, 156);
+        image(contestImg[currentIndex], x + 33, y + 55, 110, 156);
 
         // 화살표 처리
         if (currentIndex == 0) {
@@ -600,7 +600,7 @@ class ContestWidget extends Widget{
 
         textSize(16);
         fill(255);
-        text(contestDate[currentIndex], x + 19, y + 232 );
+        text(contestDate[currentIndex], x + 19, y + 225);
 
         // 화면 변경 여부 확인 후 Plus 이미지 표시
         if (plusIndex == 1) {
@@ -630,22 +630,24 @@ class ContestWidget extends Widget{
         }
     }
 
+    public void beforeScreen(){
+        if (plusIndex == 1){
+            currentIndex = contestImg.length - 1;
+            plusIndex = 0;
+        } else if ( currentIndex > 0){
+            currentIndex -= 1;
+        }
+    }
     public void moveLink(){
         link(ContestUrl);
     }
 
-    public void beforeScreen(){
-        if (currentIndex > 0) {
-            currentIndex -= 1;  // 이전 공모전으로
-            plusIndex = 0;
-        }
-    }
 
     public boolean isRightArrowClicked(float mouseX, float mouseY, float scrollY){
-        float rArrowX = x + 160;
+        float rArrowX = x + 150;
         float rArrowY = y + 120 + scrollY;
-        float rArrowWidth = 10;
-        float rArrowHeight  = 15;
+        float rArrowWidth = 20;
+        float rArrowHeight  = 25;
 
         if(mouseX > rArrowX && mouseX < rArrowX + rArrowWidth &&
         mouseY > rArrowY && mouseY < rArrowY + rArrowHeight){
@@ -656,10 +658,10 @@ class ContestWidget extends Widget{
     }
 
     public boolean isLeftArrowClicked(float mouseX, float mouseY, float scrollY){
-        float lArrowX = x+10;
-        float lArrowY = y+120+scrollY;
-        float lArrowWidth = 10;
-        float lArrowHeight  = 15;
+        float lArrowX = x + 10;
+        float lArrowY = y + 120 + scrollY;
+        float lArrowWidth = 20;
+        float lArrowHeight = 25;
        if(mouseX > lArrowX && mouseX < lArrowX + lArrowWidth &&
         mouseY > lArrowY && mouseY < lArrowY + lArrowHeight){
             println("왼쪽 화살표 클릭");
