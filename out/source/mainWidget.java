@@ -866,7 +866,7 @@ class MusicWidget extends Widget{
   public boolean isPluseClicked(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
     float plusY = y + 12 + scrollY;
-    float plusWidth = 80;
+    float plusWidth = 160;
     float plusHeigh = 80;
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
