@@ -56,8 +56,8 @@ class GamjaWidget extends Widget{
       // 감자 멘트를 클릭한 후 2초 동안만 표시
       if (showMent) {
         image(gamjaMents[currentIndex], x + 210, y + 38, 139, 14);
-        // 2초가 지나면 멘트를 숨김
-        if (millis() - mentStartTime > 2000) {
+        // 1초가 지나면 멘트를 숨김
+        if (millis() - mentStartTime > 1000) {
           showMent = false;
         }
       }
