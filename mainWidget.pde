@@ -81,6 +81,9 @@ void mousePressed() {
       } else if (gamjaWidget.isRightArrowClicked(mouseX,mouseY,scrollY)) {
         println("멘트화면");
         gamjaWidget.nextScreen();
+      } else if (gamjaWidget.isGamjaLabelClicked(mouseX,mouseY,scrollY)){
+        println("글감 위젯 이동");
+        gamjaWidget.moveLink();
       }
     } else if (widget instanceof ContestWidget) {
       ContestWidget contestWidget = (ContestWidget) widget;

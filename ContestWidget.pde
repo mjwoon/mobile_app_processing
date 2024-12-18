@@ -19,7 +19,7 @@ class ContestWidget extends Widget{
     float radius, color bgColor){
         super(x,y, width, height, radius, bgColor);
 
-        contestImg[0] = loadImage("contestImage1.jpg");
+        contestImg[0] = loadImage("contest1.png");
         contestImg[1] = loadImage("contest2.png");
         
         contestTitle[0] = "2024 신예 작가 공모전";
@@ -36,7 +36,7 @@ class ContestWidget extends Widget{
         selectPoint = loadImage("CSelectPoint.png");
         normalPoint = loadImage("CnormalPoint.png");
 
-        koreanFont = createFont("MaruBuri-Bold.ttf",32);
+        koreanFont = createFont("malgunbd.ttf",32);
 
     }
 
@@ -50,14 +50,14 @@ class ContestWidget extends Widget{
 
         if (currentIndex == 0) {
             textSize(15);
-            text(contestTitle[currentIndex], x + 15, y + 30);  // 0번 인덱스일 때
+            text(contestTitle[currentIndex], x + 13, y + 40);  // 0번 인덱스일 때
             image(normalPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
 
         } else if (currentIndex == 1) {
             textSize(15);
-            text(contestTitle[currentIndex], x + 25, y + 30);  // 1번 인덱스일 때 (위치 변경 가능)
+            text(contestTitle[currentIndex], x + 25, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(normalPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
@@ -77,7 +77,7 @@ class ContestWidget extends Widget{
 
         textSize(16);
         fill(255);
-        text(contestDate[currentIndex], x + 19, y + 225);
+        text(contestDate[currentIndex], x + 14, y + 230);
 
         // 화면 변경 여부 확인 후 Plus 이미지 표시
         if (plusIndex == 1) {
