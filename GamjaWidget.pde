@@ -63,13 +63,13 @@ class GamjaWidget extends Widget{
         }
       }
 
-      image(rightArrowImage, x + 330, y+106,12,12);
+      image(rightArrowImage, x + 330, y+106, 12, 12);
       image(pointImage1, x + 168, y+195);
       image(pointImage2, x + 183, y+195);
     } else {
-      image(novelMent, x + 55, y + 100, 270, 20);   // 글귀
+      image(novelMent, x + 60, y + 100, 270, 20);   // 글귀
       image(novelWriter,x + 250, y + 20, 100, 14);   // 글귀 작가
-      image(leftArrowImage, x + 12, y+106,12,12);
+      image(leftArrowImage, x + 24, y+106, 12, 12);
       image(pointImage1, x + 183, y+195);
       image(pointImage2, x + 168, y+195);
     }
@@ -90,7 +90,7 @@ class GamjaWidget extends Widget{
   }
 
   boolean isLeftArrowClicked(float mouseX, float mouseY, float scrollY){
-      float lArrowX = x+12;
+      float lArrowX = x + 24;
       float lArrowY = y+106+scrollY;
       float lArrowWidth = 12;
       float lArrowHeight = 12;

@@ -20,13 +20,13 @@ class AssistWidget extends Widget{
     notChecked = loadImage("notChecked.png");
     checked = loadImage("checked.png");   
     
-    koreanFont = createFont("malgunbd.ttf",16);
+    koreanFont = createFont("malgunbd.ttf",14);
     //체크리스트 항목 추가
     float checklistStartY = y + 60;
-    checklist.add(new ChecklistItem(1, "ch4: 122페이지 오타 수정", x + 20, checklistStartY));
-    checklist.add(new ChecklistItem(2, "ch3: ch1과 설정 충돌 수정", x + 20, checklistStartY + 40));
-    checklist.add(new ChecklistItem(3, "ch6: 마무리" x + 20, checklistStartY + 80));
-    checklist.add(new ChecklistItem(4, "ch1: 재검토", x + 20, checklistStartY + 120));
+    checklist.add(new ChecklistItem(1, "ch4: 122페이지...", x + 10, checklistStartY));
+    checklist.add(new ChecklistItem(2, "ch3: ch1과 설정...", x + 10, checklistStartY + 40));
+    checklist.add(new ChecklistItem(3, "ch6: 마무리", x + 10, checklistStartY + 80));
+    checklist.add(new ChecklistItem(4, "ch1: 재검토", x + 10, checklistStartY + 120));
   }
   
   
@@ -37,7 +37,7 @@ class AssistWidget extends Widget{
     rect(x, y, width, height,radius);
     
     textFont(koreanFont);
-    fill(#000000);
+    fill(#212527);
     
     image(aiImage, x + 18, y + 16, 25, 25);
     
@@ -46,27 +46,27 @@ class AssistWidget extends Widget{
     for (ChecklistItem item : checklist) {
       if (item.index == 1) {
         if (flag % 2 == 1) {
-          image(checked, x + 20, y + 62, 14, 14);
+          image(checked, x + 16, y + 62, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 62, 14, 14);
+          image(notChecked, x + 16, y + 62, 16, 16);
         }
       } else if (item.index == 2) {
         if (flag2 % 2 == 1) {
-          image(checked, x + 20, y + 102, 14, 14);
+          image(checked, x + 16, y + 102, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 102, 14, 14);
+          image(notChecked, x + 16, y + 102, 16, 16);
         }
       } else if (item.index == 3) {
         if (flag3  % 2 == 1) {
-          image(checked, x + 20, y + 142, 14, 14);
+          image(checked, x + 16, y + 142, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 142, 14, 14);
+          image(notChecked, x + 16, y + 142, 16, 16);
         }
       } else if (item.index == 4) {
         if (flag4 % 2 == 1) {
-          image(checked, x + 20, y + 182, 14, 14);
+          image(checked, x + 16, y + 182, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 182, 14, 14);
+          image(notChecked, x + 16, y + 182, 16, 16);
         }
       }
       item.display();
@@ -188,7 +188,7 @@ class ChecklistItem {
   }
   
   void display() {
-    fill(#000000);
+    fill(#212527);
     text(text, x + 30, y + 15);
   }
 }

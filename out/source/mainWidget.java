@@ -205,13 +205,13 @@ class AssistWidget extends Widget{
     notChecked = loadImage("notChecked.png");
     checked = loadImage("checked.png");   
     
-    koreanFont = createFont("malgunbd.ttf",16);
+    koreanFont = createFont("malgunbd.ttf",14);
     //체크리스트 항목 추가
     float checklistStartY = y + 60;
-    checklist.add(new ChecklistItem(1, "Item 1", x + 20, checklistStartY));
-    checklist.add(new ChecklistItem(2, "Item 2", x + 20, checklistStartY + 40));
-    checklist.add(new ChecklistItem(3, "Item 3", x + 20, checklistStartY + 80));
-    checklist.add(new ChecklistItem(4, "Item 4", x + 20, checklistStartY + 120));
+    checklist.add(new ChecklistItem(1, "ch4: 122페이지...", x + 10, checklistStartY));
+    checklist.add(new ChecklistItem(2, "ch3: ch1과 설정...", x + 10, checklistStartY + 40));
+    checklist.add(new ChecklistItem(3, "ch6: 마무리", x + 10, checklistStartY + 80));
+    checklist.add(new ChecklistItem(4, "ch1: 재검토", x + 10, checklistStartY + 120));
   }
   
   
@@ -222,7 +222,7 @@ class AssistWidget extends Widget{
     rect(x, y, width, height,radius);
     
     textFont(koreanFont);
-    fill(0xFF000000);
+    fill(0xFF212527);
     
     image(aiImage, x + 18, y + 16, 25, 25);
     
@@ -231,27 +231,27 @@ class AssistWidget extends Widget{
     for (ChecklistItem item : checklist) {
       if (item.index == 1) {
         if (flag % 2 == 1) {
-          image(checked, x + 20, y + 62, 14, 14);
+          image(checked, x + 16, y + 62, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 62, 14, 14);
+          image(notChecked, x + 16, y + 62, 16, 16);
         }
       } else if (item.index == 2) {
         if (flag2 % 2 == 1) {
-          image(checked, x + 20, y + 102, 14, 14);
+          image(checked, x + 16, y + 102, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 102, 14, 14);
+          image(notChecked, x + 16, y + 102, 16, 16);
         }
       } else if (item.index == 3) {
         if (flag3  % 2 == 1) {
-          image(checked, x + 20, y + 142, 14, 14);
+          image(checked, x + 16, y + 142, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 142, 14, 14);
+          image(notChecked, x + 16, y + 142, 16, 16);
         }
       } else if (item.index == 4) {
         if (flag4 % 2 == 1) {
-          image(checked, x + 20, y + 182, 14, 14);
+          image(checked, x + 16, y + 182, 16, 16);
         } else {
-          image(notChecked, x + 20, y + 182, 14, 14);
+          image(notChecked, x + 16, y + 182, 16, 16);
         }
       }
       item.display();
@@ -373,7 +373,7 @@ class ChecklistItem {
   }
   
   public void display() {
-    fill(0xFF000000);
+    fill(0xFF212527);
     text(text, x + 30, y + 15);
   }
 }
@@ -772,13 +772,13 @@ class GamjaWidget extends Widget{
         }
       }
 
-      image(rightArrowImage, x + 330, y+106,12,12);
+      image(rightArrowImage, x + 330, y+106, 12, 12);
       image(pointImage1, x + 168, y+195);
       image(pointImage2, x + 183, y+195);
     } else {
-      image(novelMent, x + 55, y + 100, 270, 20);   // 글귀
+      image(novelMent, x + 60, y + 100, 270, 20);   // 글귀
       image(novelWriter,x + 250, y + 20, 100, 14);   // 글귀 작가
-      image(leftArrowImage, x + 12, y+106,12,12);
+      image(leftArrowImage, x + 24, y+106, 12, 12);
       image(pointImage1, x + 183, y+195);
       image(pointImage2, x + 168, y+195);
     }
@@ -799,7 +799,7 @@ class GamjaWidget extends Widget{
   }
 
   public boolean isLeftArrowClicked(float mouseX, float mouseY, float scrollY){
-      float lArrowX = x+12;
+      float lArrowX = x + 24;
       float lArrowY = y+106+scrollY;
       float lArrowWidth = 12;
       float lArrowHeight = 12;
