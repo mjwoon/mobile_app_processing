@@ -20,7 +20,7 @@ class AssistWidget extends Widget{
     notChecked = loadImage("notChecked.png");
     checked = loadImage("checked.png");   
     
-    koreanFont = createFont("malgunbd.ttf",14);
+    koreanFont = createFont("malgunbd.ttf",16);
     //체크리스트 항목 추가
     float checklistStartY = y + 60;
     checklist.add(new ChecklistItem(1, "ch4: 122페이지...", x + 10, checklistStartY));
@@ -188,6 +188,7 @@ class ChecklistItem {
   }
   
   void display() {
+    textSize(14);
     fill(#212527);
     text(text, x + 30, y + 15);
   }
