@@ -57,6 +57,7 @@ class AssistWidget extends Widget {
       // 체크박스 이미지 표시
       if (item.index == 1) {
         if (flag % 2 == 1) {
+<<<<<<< HEAD
           image(checked, x + 16, y + 62, 15, 15);
         } else {
           image(notChecked, x + 16, y + 62, 15, 15);
@@ -78,6 +79,29 @@ class AssistWidget extends Widget {
           image(checked, x + 16, y + 182, 15, 15);
         } else {
           image(notChecked, x + 16, y + 182, 15, 15);
+=======
+          image(checked, x + 16, y + 62, 16, 16);
+        } else {
+          image(notChecked, x + 16, y + 62, 16, 16);
+        }
+      } else if (item.index == 2) {
+        if (flag2 % 2 == 1) {
+          image(checked, x + 16, y + 102, 16, 16);
+        } else {
+          image(notChecked, x + 16, y + 102, 16, 16);
+        }
+      } else if (item.index == 3) {
+        if (flag3  % 2 == 1) {
+          image(checked, x + 16, y + 142, 16, 16);
+        } else {
+          image(notChecked, x + 16, y + 142, 16, 16);
+        }
+      } else if (item.index == 4) {
+        if (flag4 % 2 == 1) {
+          image(checked, x + 16, y + 182, 16, 16);
+        } else {
+          image(notChecked, x + 16, y + 182, 16, 16);
+>>>>>>> 31606ca22b32ecbdadf8151734eb91c69f7d3c99
         }
       }
     }
@@ -196,8 +220,13 @@ class ChecklistItem {
   }
   
   void display() {
+<<<<<<< HEAD
     textSize(13);
     fill(#424242);
+=======
+    textSize(14);
+    fill(#212527);
+>>>>>>> 31606ca22b32ecbdadf8151734eb91c69f7d3c99
     text(text, x + 30, y + 15);
   }
 }

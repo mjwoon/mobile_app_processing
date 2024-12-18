@@ -74,6 +74,7 @@ void display() {
             }
         }
 
+<<<<<<< HEAD
         
 
         // 화살표 이미지 크기 조정 (비율을 유지한 크기로 조정)
@@ -101,6 +102,17 @@ void display() {
         // 포인트 이미지
         image(pointImage1, x + 183, y + 195);
         image(pointImage2, x + 168, y + 195);
+=======
+      image(rightArrowImage, x + 330, y+106, 12, 12);
+      image(pointImage1, x + 168, y+195);
+      image(pointImage2, x + 183, y+195);
+    } else {
+      image(novelMent, x + 60, y + 100, 270, 20);   // 글귀
+      image(novelWriter,x + 250, y + 20, 100, 14);   // 글귀 작가
+      image(leftArrowImage, x + 24, y+106, 12, 12);
+      image(pointImage1, x + 183, y+195);
+      image(pointImage2, x + 168, y+195);
+>>>>>>> 31606ca22b32ecbdadf8151734eb91c69f7d3c99
     }
 }
 
