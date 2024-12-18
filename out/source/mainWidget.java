@@ -188,10 +188,9 @@ int flag2 = 0;
 int flag3 = 0;
 int flag4 = 0;
 
-
-class AssistWidget extends Widget{
+class AssistWidget extends Widget {
   PImage aiImage;
-  PImage notChecked, checked; 
+  PImage notChecked, checked, lineImage;  // lineImage 추가
   String name = "AI 어시";
   ArrayList<ChecklistItem> checklist = new ArrayList<ChecklistItem>();
   String CheckListUrl = "https://keep.google.com/u/0/";
@@ -204,9 +203,11 @@ class AssistWidget extends Widget{
     aiImage = loadImage("AI.png");  
     notChecked = loadImage("notChecked.png");
     checked = loadImage("checked.png");   
+    lineImage = loadImage("Line.png");  // line.png 이미지 로드
     
-    koreanFont = createFont("malgunbd.ttf",16);
-    //체크리스트 항목 추가
+    koreanFont = createFont("malgunbd.ttf", 16);
+    
+    // 체크리스트 항목 추가
     float checklistStartY = y + 60;
     checklist.add(new ChecklistItem(1, "ch4: 122페이지...", x + 10, checklistStartY));
     checklist.add(new ChecklistItem(2, "ch3: ch1과 설정...", x + 10, checklistStartY + 40));
@@ -214,21 +215,31 @@ class AssistWidget extends Widget{
     checklist.add(new ChecklistItem(4, "ch1: 재검토", x + 10, checklistStartY + 120));
   }
   
-  
   @Override public 
   void display() {
-    stroke(0xFFE0D9D0);
-    fill(0xFFE5E5E5);
-    rect(x, y, width, height,radius);
+    stroke(0xFFEBE5DB);
+    fill(0xFFF1EDEA);
+    rect(x, y, width, height, radius);
     
     textFont(koreanFont);
     fill(0xFF212527);
     
     image(aiImage, x + 18, y + 16, 25, 25);
-    
     text(name, x + 60, y + 34);
     
-    for (ChecklistItem item : checklist) {
+    for (int i = 0; i < checklist.size(); i++) {
+      ChecklistItem item = checklist.get(i);
+      
+      // 체크리스트 항목을 표시
+      item.display();
+      
+      // 구분선 추가 (항목 사이에 line.png 추가)
+      if (i < checklist.size() - 1) {  // 마지막 항목 뒤에는 구분선 안 보이게
+        float lineY = item.y + 30;  // 각 항목의 아래 위치에 라인 표시
+        image(lineImage, x + 38, lineY, (width - 20) * 2 / 3, 1.5f);  // 라인 이미지 길이 줄이기
+      }
+      
+      // 체크박스 이미지 표시
       if (item.index == 1) {
         if (flag % 2 == 1) {
           image(checked, x + 16, y + 62, 16, 16);
@@ -254,9 +265,7 @@ class AssistWidget extends Widget{
           image(notChecked, x + 16, y + 182, 16, 16);
         }
       }
-      item.display();
     }
-    
   } 
   
   public boolean toApp(float mouseX, float mouseY, float scrollY) {
@@ -276,7 +285,7 @@ class AssistWidget extends Widget{
   public boolean isChecked(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
     float plusY = y + 50 + scrollY;
-    float plusWidth = 20;
+    float plusWidth = 144;
     float plusHeigh = 20;
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
@@ -295,7 +304,7 @@ class AssistWidget extends Widget{
   public boolean isChecked2(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
     float plusY = y + 94 + scrollY;
-    float plusWidth = 20;
+    float plusWidth = 144;
     float plusHeigh = 20;
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
@@ -315,7 +324,7 @@ class AssistWidget extends Widget{
   public boolean isChecked3(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
     float plusY = y + 134 + scrollY;
-    float plusWidth = 20;
+    float plusWidth = 144;
     float plusHeigh = 20;
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
@@ -335,7 +344,7 @@ class AssistWidget extends Widget{
   public boolean isChecked4(float mouseX, float mouseY, float scrollY) {
     float plusX = x + 12;
     float plusY = y + 174 + scrollY;
-    float plusWidth = 20;
+    float plusWidth = 144;
     float plusHeigh = 20;
     
     if (mouseX > plusX && mouseX < plusX + plusWidth && 
@@ -358,7 +367,6 @@ class AssistWidget extends Widget{
   
 } 
 
-
 // ChecklistItem 클래스
 class ChecklistItem {
   String text;
@@ -373,8 +381,8 @@ class ChecklistItem {
   }
   
   public void display() {
-    textSize(14);
-    fill(0xFF212527);
+    textSize(13);
+    fill(0xFF424242);
     text(text, x + 30, y + 15);
   }
 }
@@ -595,16 +603,19 @@ class ContestWidget extends Widget{
         textFont(koreanFont);
         fill(255);
 
+         // 텍스트 크기를 1포인트 키우고, 굵은 글씨로 설정
+    textSize(17);  // 기존 15에서 16으로 증가
+
         if (currentIndex == 0) {
             textSize(15);
-            text(contestTitle[currentIndex], x + 13, y + 40);  // 0번 인덱스일 때
+            text(contestTitle[currentIndex], x + 9, y + 38);  // 0번 인덱스일 때
             image(normalPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
 
         } else if (currentIndex == 1) {
             textSize(15);
-            text(contestTitle[currentIndex], x + 25, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
+            text(contestTitle[currentIndex], x + 21, y + 38);  // 1번 인덱스일 때 (위치 변경 가능)
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(normalPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
@@ -612,17 +623,18 @@ class ContestWidget extends Widget{
 
         image(contestImg[currentIndex], x + 33, y + 55, 110, 156);
 
-        // 화살표 처리
-        if (currentIndex == 0) {
-            // 0번 인덱스에서는 오른쪽 화살표만
-            image(rightArrow, x + 155, y + 120, 10, 15);
-        } else if (currentIndex == 1) {
-            // 1번 인덱스에서는 좌우 화살표 모두
-            image(leftArrow, x + 10, y + 120, 10, 15);
-            image(rightArrow, x + 155, y + 120, 10, 15);
-        }
+        // 화살표 이미지 크기를 줄임
+    if (currentIndex == 0) {
+        // 0번 인덱스에서는 오른쪽 화살표만
+        image(rightArrow, x + 155, y + 120, 8, 12);  // 크기 10x15에서 8x12로 축소
+    } else if (currentIndex == 1) {
+        // 1번 인덱스에서는 좌우 화살표 모두
+        image(leftArrow, x + 10, y + 120, 8, 12);   // 크기 10x15에서 8x12로 축소
+        image(rightArrow, x + 155, y + 120, 8, 12);
+    }
 
-        textSize(16);
+
+        textSize(15);
         fill(255);
         text(contestDate[currentIndex], x + 14, y + 230);
 
@@ -632,15 +644,15 @@ class ContestWidget extends Widget{
             rect(215,558,173,258,25);
 
             image(plusImage, x + 45, y + 80, 82, 82);
-            image(leftArrow, x + 10, y + 120, 10, 15);
+            image(leftArrow, x + 10, y + 120, 8, 12);
 
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(normalPoint, x+89, y+240);
 
             fill(255);
-            textSize(18);
-            text("추가", x + 70, y + 210);
+            textSize(16);
+            text("추가", x + 70, y + 192);
         }
         
     }
@@ -753,37 +765,67 @@ class GamjaWidget extends Widget{
     pointImage2 = loadImage("normalPoint.png");
   }
 
-  @Override public 
-  void display() {
-    stroke(0xFFE0D9D0);
+@Override public 
+void display() {
+    stroke(0xFFEBE5DB);
     fill(0xFFF4E4CE);  // GamjaWidget만의 고유한 색상
     rect(x, y, width, height, radius);
 
-    image(gmajaLabelImage, x+324, y+ 191, 20,12);
+    image(gmajaLabelImage, x + 324, y + 191, 20, 12);
 
-    if(!screenChanged){
-      image(gamjaImages[currentIndex],x + 101,y + 42,166,154); // 감자 사진
-      
-      // 감자 멘트를 클릭한 후 2초 동안만 표시
-      if (showMent) {
-        image(gamjaMents[currentIndex], x + 210, y + 38, 139, 14);
-        // 1초가 지나면 멘트를 숨김
-        if (millis() - mentStartTime > 1000) {
-          showMent = false;
+    if (!screenChanged) {
+        image(gamjaImages[currentIndex], x + 101, y + 42, 166, 154); // 감자 사진
+        
+        // 감자 멘트를 클릭한 후 2초 동안만 표시
+        if (showMent) {
+            // 첫 번째 멘트 이미지 크기 조정 (기본 크기)
+            float mentWidth = 139;
+            float mentHeight = (gamjaMents[currentIndex].height / (float)gamjaMents[currentIndex].width) * mentWidth;
+
+            // gamjaMent2, gamjaMent3의 크기도 gamjaMent1과 동일하게 맞추기 위해 크기 조정
+            if (currentIndex == 1 || currentIndex == 2) {
+                mentWidth = 139;  // 원하는 너비
+                mentHeight = (gamjaMents[0].height / (float)gamjaMents[0].width) * mentWidth;  // gamjaMent1의 비율을 유지한 높이 계산
+            }
+
+            image(gamjaMents[currentIndex], x + 210, y + 38, mentWidth, mentHeight);
+
+            // 1초가 지나면 멘트를 숨김
+            if (millis() - mentStartTime > 1000) {
+                showMent = false;
+            }
         }
-      }
 
-      image(rightArrowImage, x + 330, y+106, 12, 12);
-      image(pointImage1, x + 168, y+195);
-      image(pointImage2, x + 183, y+195);
+        
+
+        // 화살표 이미지 크기 조정 (비율을 유지한 크기로 조정)
+        float arrowWidth = 10;
+        float arrowHeight = (leftArrowImage.height / (float)leftArrowImage.width) * arrowWidth;
+        image(rightArrowImage, x + 330, y + 106, arrowWidth, arrowHeight);
+
+        // 포인트 이미지
+        image(pointImage1, x + 168, y + 195);
+        image(pointImage2, x + 183, y + 195);
     } else {
-      image(novelMent, x + 60, y + 100, 270, 20);   // 글귀
-      image(novelWriter,x + 250, y + 20, 100, 14);   // 글귀 작가
-      image(leftArrowImage, x + 24, y+106, 12, 12);
-      image(pointImage1, x + 183, y+195);
-      image(pointImage2, x + 168, y+195);
+        // 글귀 이미지
+        image(novelMent, x + 60, y + 100, 270, 20);
+
+        // novelWriter 이미지 비율 조정
+        float novelWriterWidth = 100;
+        float novelWriterHeight = (novelWriter.height / (float)novelWriter.width) * novelWriterWidth;
+        image(novelWriter, x + 250, y + 20, novelWriterWidth, novelWriterHeight);
+
+        // 좌측 화살표 크기 조정
+        float leftArrowWidth = 10;
+        float leftArrowHeight = (leftArrowImage.height / (float)leftArrowImage.width) * leftArrowWidth;
+        image(leftArrowImage, x + 24, y + 106, leftArrowWidth, leftArrowHeight);
+
+        // 포인트 이미지
+        image(pointImage1, x + 183, y + 195);
+        image(pointImage2, x + 168, y + 195);
     }
-  }
+}
+
 
   public boolean isRightArrowClicked(float mouseX, float mouseY, float scrollY){
     float rArrowX = x+330;
