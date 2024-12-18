@@ -43,37 +43,67 @@ class GamjaWidget extends Widget{
     pointImage2 = loadImage("normalPoint.png");
   }
 
-  @Override
-  void display() {
-    stroke(#E0D9D0);
+@Override
+void display() {
+    stroke(#EBE5DB);
     fill(#F4E4CE);  // GamjaWidget만의 고유한 색상
     rect(x, y, width, height, radius);
 
-    image(gmajaLabelImage, x+324, y+ 191, 20,12);
+    image(gmajaLabelImage, x + 324, y + 191, 20, 12);
 
-    if(!screenChanged){
-      image(gamjaImages[currentIndex],x + 101,y + 42,166,154); // 감자 사진
-      
-      // 감자 멘트를 클릭한 후 2초 동안만 표시
-      if (showMent) {
-        image(gamjaMents[currentIndex], x + 210, y + 38, 139, 14);
-        // 1초가 지나면 멘트를 숨김
-        if (millis() - mentStartTime > 1000) {
-          showMent = false;
+    if (!screenChanged) {
+        image(gamjaImages[currentIndex], x + 101, y + 42, 166, 154); // 감자 사진
+        
+        // 감자 멘트를 클릭한 후 2초 동안만 표시
+        if (showMent) {
+            // 첫 번째 멘트 이미지 크기 조정 (기본 크기)
+            float mentWidth = 139;
+            float mentHeight = (gamjaMents[currentIndex].height / (float)gamjaMents[currentIndex].width) * mentWidth;
+
+            // gamjaMent2, gamjaMent3의 크기도 gamjaMent1과 동일하게 맞추기 위해 크기 조정
+            if (currentIndex == 1 || currentIndex == 2) {
+                mentWidth = 139;  // 원하는 너비
+                mentHeight = (gamjaMents[0].height / (float)gamjaMents[0].width) * mentWidth;  // gamjaMent1의 비율을 유지한 높이 계산
+            }
+
+            image(gamjaMents[currentIndex], x + 210, y + 38, mentWidth, mentHeight);
+
+            // 1초가 지나면 멘트를 숨김
+            if (millis() - mentStartTime > 1000) {
+                showMent = false;
+            }
         }
-      }
 
-      image(rightArrowImage, x + 330, y+106,12,12);
-      image(pointImage1, x + 168, y+195);
-      image(pointImage2, x + 183, y+195);
+        
+
+        // 화살표 이미지 크기 조정 (비율을 유지한 크기로 조정)
+        float arrowWidth = 10;
+        float arrowHeight = (leftArrowImage.height / (float)leftArrowImage.width) * arrowWidth;
+        image(rightArrowImage, x + 330, y + 106, arrowWidth, arrowHeight);
+
+        // 포인트 이미지
+        image(pointImage1, x + 168, y + 195);
+        image(pointImage2, x + 183, y + 195);
     } else {
-      image(novelMent, x + 55, y + 100, 270, 20);   // 글귀
-      image(novelWriter,x + 250, y + 20, 100, 14);   // 글귀 작가
-      image(leftArrowImage, x + 12, y+106,12,12);
-      image(pointImage1, x + 183, y+195);
-      image(pointImage2, x + 168, y+195);
+        // 글귀 이미지
+        image(novelMent, x + 60, y + 100, 270, 20);
+
+        // novelWriter 이미지 비율 조정
+        float novelWriterWidth = 100;
+        float novelWriterHeight = (novelWriter.height / (float)novelWriter.width) * novelWriterWidth;
+        image(novelWriter, x + 250, y + 20, novelWriterWidth, novelWriterHeight);
+
+        // 좌측 화살표 크기 조정
+        float leftArrowWidth = 10;
+        float leftArrowHeight = (leftArrowImage.height / (float)leftArrowImage.width) * leftArrowWidth;
+        image(leftArrowImage, x + 24, y + 106, leftArrowWidth, leftArrowHeight);
+
+        // 포인트 이미지
+        image(pointImage1, x + 183, y + 195);
+        image(pointImage2, x + 168, y + 195);
     }
-  }
+}
+
 
   boolean isRightArrowClicked(float mouseX, float mouseY, float scrollY){
     float rArrowX = x+330;
@@ -90,7 +120,7 @@ class GamjaWidget extends Widget{
   }
 
   boolean isLeftArrowClicked(float mouseX, float mouseY, float scrollY){
-      float lArrowX = x+12;
+      float lArrowX = x + 24;
       float lArrowY = y+106+scrollY;
       float lArrowWidth = 12;
       float lArrowHeight = 12;

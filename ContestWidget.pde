@@ -48,16 +48,19 @@ class ContestWidget extends Widget{
         textFont(koreanFont);
         fill(255);
 
+         // 텍스트 크기를 1포인트 키우고, 굵은 글씨로 설정
+    textSize(17);  // 기존 15에서 16으로 증가
+
         if (currentIndex == 0) {
             textSize(15);
-            text(contestTitle[currentIndex], x + 13, y + 40);  // 0번 인덱스일 때
+            text(contestTitle[currentIndex], x + 9, y + 38);  // 0번 인덱스일 때
             image(normalPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
 
         } else if (currentIndex == 1) {
             textSize(15);
-            text(contestTitle[currentIndex], x + 25, y + 40);  // 1번 인덱스일 때 (위치 변경 가능)
+            text(contestTitle[currentIndex], x + 21, y + 38);  // 1번 인덱스일 때 (위치 변경 가능)
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(normalPoint, x+80, y+240);
             image(selectPoint, x+89, y+240);
@@ -65,17 +68,18 @@ class ContestWidget extends Widget{
 
         image(contestImg[currentIndex], x + 33, y + 55, 110, 156);
 
-        // 화살표 처리
-        if (currentIndex == 0) {
-            // 0번 인덱스에서는 오른쪽 화살표만
-            image(rightArrow, x + 155, y + 120, 10, 15);
-        } else if (currentIndex == 1) {
-            // 1번 인덱스에서는 좌우 화살표 모두
-            image(leftArrow, x + 10, y + 120, 10, 15);
-            image(rightArrow, x + 155, y + 120, 10, 15);
-        }
+        // 화살표 이미지 크기를 줄임
+    if (currentIndex == 0) {
+        // 0번 인덱스에서는 오른쪽 화살표만
+        image(rightArrow, x + 155, y + 120, 8, 12);  // 크기 10x15에서 8x12로 축소
+    } else if (currentIndex == 1) {
+        // 1번 인덱스에서는 좌우 화살표 모두
+        image(leftArrow, x + 10, y + 120, 8, 12);   // 크기 10x15에서 8x12로 축소
+        image(rightArrow, x + 155, y + 120, 8, 12);
+    }
 
-        textSize(16);
+
+        textSize(15);
         fill(255);
         text(contestDate[currentIndex], x + 14, y + 230);
 
@@ -85,15 +89,15 @@ class ContestWidget extends Widget{
             rect(215,558,173,258,25);
 
             image(plusImage, x + 45, y + 80, 82, 82);
-            image(leftArrow, x + 10, y + 120, 10, 15);
+            image(leftArrow, x + 10, y + 120, 8, 12);
 
             image(selectPoint, x+71, y+240);  // 하단 포인트 추가
             image(selectPoint, x+80, y+240);
             image(normalPoint, x+89, y+240);
 
             fill(255);
-            textSize(18);
-            text("추가", x + 70, y + 210);
+            textSize(16);
+            text("추가", x + 70, y + 192);
         }
         
     }
