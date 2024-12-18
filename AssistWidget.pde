@@ -23,10 +23,10 @@ class AssistWidget extends Widget{
     koreanFont = createFont("malgunbd.ttf",16);
     //체크리스트 항목 추가
     float checklistStartY = y + 60;
-    checklist.add(new ChecklistItem(1, "Item 1", x + 20, checklistStartY));
-    checklist.add(new ChecklistItem(2, "Item 2", x + 20, checklistStartY + 40));
-    checklist.add(new ChecklistItem(3, "Item 3", x + 20, checklistStartY + 80));
-    checklist.add(new ChecklistItem(4, "Item 4", x + 20, checklistStartY + 120));
+    checklist.add(new ChecklistItem(1, "ch4: 122페이지 오타 수정", x + 20, checklistStartY));
+    checklist.add(new ChecklistItem(2, "ch3: ch1과 설정 충돌 수정", x + 20, checklistStartY + 40));
+    checklist.add(new ChecklistItem(3, "ch6: 마무리" x + 20, checklistStartY + 80));
+    checklist.add(new ChecklistItem(4, "ch1: 재검토", x + 20, checklistStartY + 120));
   }
   
   
